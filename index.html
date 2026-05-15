@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/Logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#b00000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Kaizen Strategy" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Cabinet de conseil spécialisé dans la transformation stratégique et digitale des entreprises. Excellence, innovation et amélioration continue." />
+    <meta name="keywords" content="conseil, stratégie, transformation digitale, amélioration continue, kaizen, formation, expertise" />
+    <meta name="author" content="Kaizen Strategy" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kaizenstrategy.ci/" />
+    <meta property="og:title" content="Kaizen Strategy - Excellence & Innovation" />
+    <meta property="og:description" content="Cabinet de conseil spécialisé dans la transformation stratégique et digitale des entreprises" />
+    <meta property="og:image" content="/Logo.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://kaizenstrategy.ci/" />
+    <meta property="twitter:title" content="Kaizen Strategy - Excellence & Innovation" />
+    <meta property="twitter:description" content="Cabinet de conseil spécialisé dans la transformation stratégique et digitale des entreprises" />
+    <meta property="twitter:image" content="/Logo.jpg" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/Logo.jpg" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/Logo.jpg" as="image" />
+    <link rel="preload" href="/photo-fondateur.png" as="image" />
+    
+    <title>Kaizen Strategy - Excellence & Innovation</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      let deferredPrompt;
+      let installPromptShown = false;
+
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registered successfully: ', registration.scope);
+            }, function(err) {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+
+      // PWA Install Prompt
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('beforeinstallprompt event fired');
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Stash the event so it can be triggered later
+        deferredPrompt = e;
+        // Update UI notify the user they can install the PWA
+        showInstallPromotion();
+      });
+
+      // Function to show install promotion
+      function showInstallPromotion() {
+        if (installPromptShown) return;
+        installPromptShown = true;
+
+        // Create install banner
+        const installBanner = document.createElement('div');
+        installBanner.id = 'install-banner';
+        installBanner.innerHTML = `
+          <div style="
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #b00000;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: system-ui, -apple-system, sans-serif;
+            animation: slideUp 0.3s ease-out;
+          ">
+            <div style="flex: 1;">
+              <div style="font-weight: bold; margin-bottom: 4px;">📱 Installer Kaizen Strategy</div>
+              <div style="font-size: 14px; opacity: 0.9;">Accès rapide depuis votre écran d'accueil</div>
+            </div>
+            <div>
+              <button id="install-button" style="
+                background: white;
+                color: #b00000;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-weight: bold;
+                margin-right: 8px;
+                cursor: pointer;
+              ">Installer</button>
+              <button id="dismiss-button" style="
+                background: transparent;
+                color: white;
+                border: 1px solid white;
+                padding: 8px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+              ">Plus tard</button>
+            </div>
+          </div>
+        `;
+
+        // Add animation styles
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+        `;
+        document.head.appendChild(style);
+
+        document.body.appendChild(installBanner);
+
+        // Install button click
+        document.getElementById('install-button').addEventListener('click', async () => {
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to the install prompt: ${outcome}`);
+            deferredPrompt = null;
+          }
+          document.getElementById('install-banner').remove();
+        });
+
+        // Dismiss button click
+        document.getElementById('dismiss-button').addEventListener('click', () => {
+          document.getElementById('install-banner').remove();
+          // Set flag to not show again for this session
+          sessionStorage.setItem('installPromptDismissed', 'true');
+        });
+
+        // Auto-hide after 10 seconds
+        setTimeout(() => {
+          const banner = document.getElementById('install-banner');
+          if (banner) {
+            banner.remove();
+          }
+        }, 10000);
+      }
+
+      // Check if app is already installed
+      window.addEventListener('appinstalled', () => {
+        console.log('PWA was installed');
+        deferredPrompt = null;
+        const banner = document.getElementById('install-banner');
+        if (banner) {
+          banner.remove();
+        }
+      });
+
+      // For iOS Safari - show custom install instructions
+      function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent);
+      }
+
+      function isInStandaloneMode() {
+        return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || 
+               (window.navigator && window.navigator.standalone);
+      }
+
+      // Show iOS install instructions if needed
+      if (isIOS() && !isInStandaloneMode()) {
+        setTimeout(() => {
+          if (!sessionStorage.getItem('iosInstallPromptShown')) {
+            showIOSInstallInstructions();
+            sessionStorage.setItem('iosInstallPromptShown', 'true');
+          }
+        }, 3000);
+      }
+
+      function showIOSInstallInstructions() {
+        const iosInstallBanner = document.createElement('div');
+        iosInstallBanner.innerHTML = `
+          <div style="
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #b00000;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            font-family: system-ui, -apple-system, sans-serif;
+            text-align: center;
+          ">
+            <div style="font-weight: bold; margin-bottom: 8px;">📱 Installer Kaizen Strategy sur iOS</div>
+            <div style="font-size: 14px; margin-bottom: 12px;">
+              1. Appuyez sur <strong>Partager</strong> 📤<br>
+              2. Sélectionnez <strong>"Sur l'écran d'accueil"</strong> ➕
+            </div>
+            <button onclick="this.parentElement.remove()" style="
+              background: white;
+              color: #b00000;
+              border: none;
+              padding: 8px 16px;
+              border-radius: 6px;
+              font-weight: bold;
+              cursor: pointer;
+            ">Compris</button>
+          </div>
+        `;
+        document.body.appendChild(iosInstallBanner);
+
+        // Auto-hide after 15 seconds
+        setTimeout(() => {
+          if (iosInstallBanner.parentElement) {
+            iosInstallBanner.remove();
+          }
+        }, 15000);
+      }
+    </script>
+  </body>
+</html>

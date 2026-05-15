@@ -1,0 +1,64 @@
+{
+  "name": "Kaizen Strategy - Excellence & Innovation",
+  "short_name": "Kaizen Strategy",
+  "description": "Cabinet de conseil spécialisé dans la transformation stratégique et digitale des entreprises",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b00000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "fr",
+  "categories": ["business", "consulting", "productivity"],
+  "icons": [
+    {
+      "src": "/Logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Logo.jpg", 
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nos Services",
+      "short_name": "Services",
+      "description": "Découvrir notre expertise",
+      "url": "/expertise",
+      "icons": [{ "src": "/Logo.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Formations",
+      "short_name": "Formations",
+      "description": "Catalogue de formations",
+      "url": "/formations",
+      "icons": [{ "src": "/Logo.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Nous contacter",
+      "url": "/contact",
+      "icons": [{ "src": "/Logo.jpg", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/Logo.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/Logo.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    }
+  ]
+}
