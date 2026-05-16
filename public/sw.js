@@ -1,9 +1,9 @@
-const CACHE_NAME = 'kaizen-strategy-v2';
+const CACHE_NAME = 'kaizen-strategy-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/Logo.jpg',
+  '/logo.jpg',
   '/photo-fondateur.png',
   // Les assets seront mis en cache dynamiquement
 ];
@@ -13,9 +13,16 @@ self.addEventListener('install', function(event) {
   console.log('Service Worker installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
+      .then(async function(cache) {
         console.log('Cache ouvert, ajout des URLs de base');
-        return cache.addAll(urlsToCache);
+        // Evite l'échec total de l'installation si une ressource statique est absente.
+        await Promise.all(
+          urlsToCache.map((url) =>
+            cache.add(url).catch(() => {
+              console.warn('Ressource ignorée pendant l\'installation du cache:', url);
+            })
+          )
+        );
       })
       .then(() => {
         console.log('Service Worker installé avec succès');
@@ -46,72 +53,104 @@ self.addEventListener('activate', function(event) {
   );
 });
 
+// Permet à la page de demander l'activation immédiate d'une nouvelle version du SW.
+self.addEventListener('message', function(event) {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
 // Interception des requêtes réseau
 self.addEventListener('fetch', function(event) {
   // Ignorer les requêtes non-HTTP
-  if (!event.request.url.startsWith('http')) {
+  if (!event.request.url.startsWith('http') || event.request.method !== 'GET') {
     return;
   }
 
-  // Stratégie: Cache First pour les assets, Network First pour l'HTML
-  if (event.request.destination === 'document') {
-    // Network First pour les pages HTML
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          // Met en cache la nouvelle version
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseClone);
-          });
-          return response;
-        })
-        .catch(() => {
-          // Fallback vers le cache
-          return caches.match(event.request);
-        })
-    );
-  } else {
-    // Cache First pour les assets (JS, CSS, images)
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(response) {
-          if (response) {
-            return response;
-          }
-
-          return fetch(event.request).then(
-            function(response) {
-              // Vérifie si la réponse est valide
-              if(!response || response.status !== 200 || response.type !== 'basic') {
-                return response;
-              }
-
-              // Clone la réponse pour la mettre en cache
-              var responseToCache = response.clone();
-
-              caches.open(CACHE_NAME)
-                .then(function(cache) {
-                  // Cache seulement les ressources de notre domaine
-                  if (event.request.url.startsWith(self.location.origin)) {
-                    cache.put(event.request, responseToCache);
-                  }
-                });
-
-              return response;
-            }
-          );
-        })
-    );
+  // Ne pas toucher aux requêtes cross-origin.
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
   }
+
+  // Network First pour HTML/JS/CSS afin d'éviter d'afficher des anciennes versions.
+  if (
+    event.request.destination === 'document' ||
+    event.request.destination === 'script' ||
+    event.request.destination === 'style' ||
+    event.request.destination === 'worker'
+  ) {
+    event.respondWith((async () => {
+      try {
+        const networkResponse = await fetch(event.request);
+        if (networkResponse && networkResponse.status === 200) {
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(event.request, networkResponse.clone());
+        }
+        return networkResponse;
+      } catch {
+        const cachedResponse = await caches.match(event.request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        if (event.request.destination === 'document') {
+          return caches.match('/index.html');
+        }
+        throw new Error('Network and cache unavailable');
+      }
+    })());
+    return;
+  }
+
+  // Cache First pour les images/polices, avec rafraîchissement en arrière-plan.
+  if (event.request.destination === 'image' || event.request.destination === 'font') {
+    event.respondWith((async () => {
+      const cachedResponse = await caches.match(event.request);
+
+      const networkFetch = fetch(event.request)
+        .then(async (networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(event.request, networkResponse.clone());
+          }
+          return networkResponse;
+        })
+        .catch(() => null);
+
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      const freshResponse = await networkFetch;
+      if (freshResponse) {
+        return freshResponse;
+      }
+
+      throw new Error('Asset unavailable');
+    })());
+    return;
+  }
+
+  // Par défaut: réseau puis fallback cache.
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200) {
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, response.clone());
+          });
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request))
+  );
 });
 
 // Gestion des notifications push (optionnel)
 self.addEventListener('push', function(event) {
   const options = {
     body: event.data ? event.data.text() : 'Nouvelle notification de Kaizen Strategy',
-    icon: '/Logo.jpg',
-    badge: '/Logo.jpg',
+    icon: '/logo.jpg',
+    badge: '/logo.jpg',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -121,12 +160,12 @@ self.addEventListener('push', function(event) {
       {
         action: 'explore',
         title: 'Découvrir',
-        icon: '/Logo.jpg'
+        icon: '/logo.jpg'
       },
       {
         action: 'close',
         title: 'Fermer',
-        icon: '/Logo.jpg'
+        icon: '/logo.jpg'
       }
     ]
   };

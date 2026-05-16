@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/jpeg" href="/Logo.jpg" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     
     <!-- PWA Meta Tags -->
@@ -22,31 +22,31 @@
     <meta property="og:url" content="https://kaizenstrategy.ci/" />
     <meta property="og:title" content="Kaizen Strategy - Excellence & Innovation" />
     <meta property="og:description" content="Cabinet de conseil spécialisé dans la transformation stratégique et digitale des entreprises" />
-    <meta property="og:image" content="/Logo.jpg" />
+    <meta property="og:image" content="/logo.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://kaizenstrategy.ci/" />
     <meta property="twitter:title" content="Kaizen Strategy - Excellence & Innovation" />
     <meta property="twitter:description" content="Cabinet de conseil spécialisé dans la transformation stratégique et digitale des entreprises" />
-    <meta property="twitter:image" content="/Logo.jpg" />
+    <meta property="twitter:image" content="/logo.jpg" />
     
     <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="152x152" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="144x144" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="60x60" href="/Logo.jpg" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/Logo.jpg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/logo.jpg" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/logo.jpg" />
     
     <!-- Manifest -->
     <link rel="manifest" href="/manifest.json" />
     
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="/Logo.jpg" as="image" />
+    <link rel="preload" href="/logo.jpg" as="image" />
     <link rel="preload" href="/photo-fondateur.png" as="image" />
     
     <title>Kaizen Strategy - Excellence & Innovation</title>
@@ -66,9 +66,31 @@
           navigator.serviceWorker.register('/sw.js')
             .then(function(registration) {
               console.log('ServiceWorker registered successfully: ', registration.scope);
+
+              if (registration.waiting) {
+                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+              }
+
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                if (!newWorker) return;
+
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    newWorker.postMessage({ type: 'SKIP_WAITING' });
+                  }
+                });
+              });
             }, function(err) {
               console.log('ServiceWorker registration failed: ', err);
             });
+
+          let hasRefreshed = false;
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (hasRefreshed) return;
+            hasRefreshed = true;
+            window.location.reload();
+          });
         });
       }
 
