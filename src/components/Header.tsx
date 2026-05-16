@@ -40,7 +40,7 @@ const Header = ({ currentPage, setCurrentPage, setCurrentExpertise, setCurrentFo
             >
               <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden mr-2 sm:mr-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-red-500/25">
                 <img 
-                  src="/logo.jpg" 
+                  src="/Logo.jpg" 
                   alt="Kaizen Strategy Logo" 
                   className="w-full h-full object-cover rounded-xl"
                 />
