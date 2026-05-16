@@ -20,11 +20,6 @@ const Footer = ({ setCurrentPage }: FooterProps) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <img 
-              src="/PHOTO-2025-09-21-21-17-14 2.jpg" 
-              alt="Kaizen Strategy" 
-              className="h-12 w-auto mb-6 filter invert"
-            />
             <p className="text-gray-300 mb-6 leading-relaxed">
               Cabinet d'études et de conseil stratégique, expert en transformation d'entreprise, nous accompagnons nos clients vers l'excellence opérationnelle et la croissance durable.
             </p>
