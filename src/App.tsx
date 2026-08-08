@@ -25,7 +25,6 @@ import PaginationTest from './components/PaginationTest';
 import MobileNavigation from './components/MobileNavigation';
 import PWAPrompt from './components/PWAPrompt';
 import TouchGestures from './components/TouchGestures';
-import FloatingInstallButton from './components/FloatingInstallButton';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -175,13 +174,11 @@ function App() {
         
         <Footer setCurrentPage={setCurrentPage} />
         
-        <PWAPrompt 
+        <PWAPrompt
           onInstall={() => {
             console.log('App installée avec succès');
           }}
         />
-        
-        <FloatingInstallButton />
       </div>
     </TouchGestures>
   );
