@@ -1,44 +1,38 @@
-import React from 'react';
-import { 
-  Monitor, 
-  Award, 
-  Clock, 
-  Users, 
-  BookOpen, 
-  Play, 
-  CheckCircle, 
-  ArrowRight,
+import {
+  Monitor,
+  Award,
+  Clock,
+  Users,
+  BookOpen,
+  Play,
   Zap,
   Globe,
   Brain,
   Target
 } from 'lucide-react';
+import { PageTitle, Section, SectionTitle, CallToAction, Reveal } from './nova';
 
 const KaizenAcademia = () => {
   const advantages = [
     {
       icon: Award,
       title: "Formations Certifiantes",
-      description: "Obtenez des certifications reconnues pour valoriser vos compétences professionnelles.",
-      color: "from-red-500 to-red-600"
+      description: "Obtenez des certifications reconnues pour valoriser vos compétences professionnelles."
     },
     {
       icon: Monitor,
       title: "Examens en Ligne",
-      description: "Passez vos évaluations directement sur la plateforme avec correction automatique.",
-      color: "from-red-600 to-red-700"
+      description: "Passez vos évaluations directement sur la plateforme avec correction automatique."
     },
     {
       icon: Clock,
       title: "Accessibilité 24/7",
-      description: "Apprenez à votre rythme, où que vous soyez, à tout moment de la journée.",
-      color: "from-red-700 to-red-800"
+      description: "Apprenez à votre rythme, où que vous soyez, à tout moment de la journée."
     },
     {
       icon: Users,
       title: "Communauté d'Apprenants",
-      description: "Échangez avec d'autres professionnels et enrichissez votre réseau.",
-      color: "from-red-800 to-red-900"
+      description: "Échangez avec d'autres professionnels et enrichissez votre réseau."
     }
   ];
 
@@ -51,173 +45,164 @@ const KaizenAcademia = () => {
     { icon: Zap, text: "Apprentissage adaptatif intelligent" }
   ];
 
+  const keyFigures = [
+    { icon: Award, value: "300+ Formations", label: "Certifiantes et interactives" },
+    { icon: Users, value: "15 000+ Apprenants", label: "Communauté active" },
+    { icon: Clock, value: "24/7 Disponible", label: "Accès illimité" }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-red-50">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-900/90 via-red-800/70 to-transparent z-10"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Formation en ligne - Kaizen Academia"
-            className="w-full h-full object-cover"
-          />
-        </div>
+    <div className="min-h-screen bg-white">
+      <PageTitle
+        title="Kaizen Academia"
+        subtitle="La première plateforme e-learning dédiée à l'excellence professionnelle. Transformez vos compétences avec nos formations innovantes et interactives."
+        breadcrumbs={[{ label: 'Formations' }, { label: 'Kaizen Academia' }]}
+        image="/nova/blog-page-title-bg.jpg"
+      />
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="text-white">
-              <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6">
-                <span className="text-white">Kaizen</span>
-                <br />
-                <span className="text-red-400">Academia</span>
-              </h1>
-              
-              <p className="text-xl text-red-100 mb-8 leading-relaxed">
-                La première plateforme e-learning dédiée à l'excellence professionnelle. 
-                Transformez vos compétences avec nos formations innovantes et interactives.
-              </p>
+      {/* Chiffres clés + accès plateforme */}
+      <Section>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <Reveal delay={100}>
+            <h2
+              className="text-2xl md:text-[32px] font-bold mb-6 relative pb-5 inline-block"
+              style={{ color: 'var(--nova-heading)' }}
+            >
+              La plateforme e-learning Kaizen
+              <span
+                className="absolute bottom-0 left-0 block w-[50px] h-[3px]"
+                style={{ backgroundColor: 'var(--nova-accent)' }}
+              ></span>
+            </h2>
+            <p
+              className="text-lg leading-relaxed mb-8"
+              style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 25%)' }}
+            >
+              Interface intuitive, contenus interactifs et technologies de pointe
+              pour une formation professionnelle d'exception, accessible partout et à tout moment.
+            </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="https://kaizenstrategyci.online"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center"
-                >
-                  <Play size={24} className="mr-3" />
-                  Accéder à la Plateforme
-                </a>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <div className="space-y-6">
-                  <div className="flex items-center text-white">
-                    <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
-                      <Award size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="font-bold">300+ Formations</div>
-                      <div className="text-red-200 text-sm">Certifiantes et interactives</div>
-                    </div>
+            <a
+              href="https://kaizenstrategyci.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-3 rounded-full text-white font-medium tracking-wide transition-all duration-500 hover:bg-[color:var(--nova-accent-dark)]"
+              style={{ backgroundColor: 'var(--nova-accent)' }}
+            >
+              <Play size={22} />
+              Accéder à la Plateforme
+            </a>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="rounded-xl p-8 space-y-6" style={{ backgroundColor: 'var(--nova-dark-bg)' }}>
+              {keyFigures.map((figure) => (
+                <div key={figure.value} className="flex items-center gap-4 text-white">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: 'var(--nova-dark-surface)' }}
+                  >
+                    <figure.icon size={22} className="text-white" />
                   </div>
-                  <div className="flex items-center text-white">
-                    <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
-                      <Users size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="font-bold">15,000+ Apprenants</div>
-                      <div className="text-red-200 text-sm">Communauté active</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-white">
-                    <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
-                      <Clock size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="font-bold">24/7 Disponible</div>
-                      <div className="text-red-200 text-sm">Accès illimité</div>
-                    </div>
+                  <div>
+                    <div className="font-bold text-white">{figure.value}</div>
+                    <div className="text-white/70 text-sm">{figure.label}</div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* Platform Preview */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Une Expérience d'Apprentissage <span className="text-red-600">Révolutionnaire</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Interface intuitive, contenus interactifs et technologies de pointe 
-              pour une formation professionnelle d'exception.
-            </p>
-          </div>
+      {/* Aperçu de la plateforme */}
+      <Section light>
+        <SectionTitle
+          title="Une Expérience d'Apprentissage Révolutionnaire"
+          description="Interface intuitive, contenus interactifs et technologies de pointe pour une formation professionnelle d'exception."
+        />
 
-          {/* Platform Mockup */}
+        <Reveal delay={100}>
           <div className="relative max-w-6xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
-              {/* Browser Bar */}
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+              {/* Barre de navigateur */}
               <div className="bg-gray-100 px-6 py-4 border-b border-gray-200">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-red-600 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <div className="ml-6 bg-white text-gray-700 px-4 py-1 rounded text-sm border">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                  <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                  <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                  <div className="ml-6 bg-white px-4 py-1 rounded text-sm border" style={{ color: 'var(--nova-default)' }}>
                     kaizenstrategyci.online
                   </div>
                 </div>
               </div>
 
-              {/* Platform Interface */}
-              <div className="p-8">
+              <div className="p-6 md:p-8">
                 <div className="grid lg:grid-cols-3 gap-8">
-                  {/* Sidebar */}
-                  <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-gray-900 font-bold text-lg mb-4">Mes Formations</h3>
+                  {/* Colonne latérale */}
+                  <div className="rounded-xl p-6 border border-gray-200" style={{ backgroundColor: 'var(--nova-light-bg)' }}>
+                    <h3 className="font-bold text-lg mb-4" style={{ color: 'var(--nova-heading)' }}>
+                      Mes Formations
+                    </h3>
                     <div className="space-y-3">
-                      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-3 rounded-lg text-sm">
+                      <div className="text-white p-3 rounded-lg text-sm" style={{ backgroundColor: 'var(--nova-accent)' }}>
                         <div className="flex items-center justify-between">
                           <span>Leadership Digital</span>
                           <span className="text-xs">75%</span>
                         </div>
-                        <div className="w-full bg-red-800 rounded-full h-1 mt-2">
+                        <div className="w-full bg-white/30 rounded-full h-1 mt-2">
                           <div className="bg-white h-1 rounded-full w-3/4"></div>
                         </div>
                       </div>
-                      <div className="bg-white text-gray-700 p-3 rounded-lg text-sm border border-gray-200">
+                      <div className="bg-white p-3 rounded-lg text-sm border border-gray-200" style={{ color: 'var(--nova-default)' }}>
                         <span>Risk Management</span>
                         <div className="w-full bg-gray-200 rounded-full h-1 mt-2">
-                          <div className="bg-red-500 h-1 rounded-full w-1/3"></div>
+                          <div className="h-1 rounded-full w-1/3" style={{ backgroundColor: 'var(--nova-accent)' }}></div>
                         </div>
                       </div>
-                      <div className="bg-white text-gray-700 p-3 rounded-lg text-sm border border-gray-200">
+                      <div className="bg-white p-3 rounded-lg text-sm border border-gray-200" style={{ color: 'var(--nova-default)' }}>
                         <span>IA & Business</span>
                         <div className="w-full bg-gray-200 rounded-full h-1 mt-2">
-                          <div className="bg-red-400 h-1 rounded-full w-1/5"></div>
+                          <div className="h-1 rounded-full w-1/5" style={{ backgroundColor: 'var(--nova-accent)' }}></div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Main Content */}
-                  <div className="lg:col-span-2 bg-gray-50 rounded-xl p-6 border border-gray-200">
+                  {/* Contenu principal */}
+                  <div className="lg:col-span-2 rounded-xl p-6 border border-gray-200" style={{ backgroundColor: 'var(--nova-light-bg)' }}>
                     <div className="flex items-center justify-between mb-6">
-                      <h3 className="text-gray-900 font-bold text-xl">Cours en Direct</h3>
-                      <div className="flex items-center text-red-600 text-sm">
-                        <div className="w-2 h-2 bg-red-600 rounded-full mr-2 animate-pulse"></div>
+                      <h3 className="font-bold text-xl" style={{ color: 'var(--nova-heading)' }}>Cours en Direct</h3>
+                      <div className="flex items-center text-sm" style={{ color: 'var(--nova-accent)' }}>
+                        <div
+                          className="w-2 h-2 rounded-full mr-2 animate-pulse"
+                          style={{ backgroundColor: 'var(--nova-accent)' }}
+                        ></div>
                         LIVE
                       </div>
                     </div>
-                    
-                    {/* Video Player Mockup */}
+
                     <div className="bg-gray-900 rounded-lg aspect-video flex items-center justify-center mb-4 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 to-transparent"></div>
                       <Play size={64} className="text-white opacity-80" />
                       <div className="absolute bottom-4 left-4 right-4">
-                        <div className="bg-black bg-opacity-70 text-white px-3 py-1 rounded text-sm">
-                          Module 3: Stratégies d'Innovation - Dr GNUI Koutoua Samson
+                        <div className="bg-black/70 text-white px-3 py-1 rounded text-sm">
+                          Module 3 : Stratégies d'Innovation - Dr GNUI Koutoua Samson
                         </div>
                       </div>
                     </div>
 
-                    {/* Course Info */}
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="bg-white p-4 rounded-lg border border-gray-200">
-                        <div className="text-gray-600 text-sm">Participants</div>
-                        <div className="text-gray-900 font-bold">247 connectés</div>
+                        <div className="text-sm" style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}>
+                          Participants
+                        </div>
+                        <div className="font-bold" style={{ color: 'var(--nova-heading)' }}>247 connectés</div>
                       </div>
                       <div className="bg-white p-4 rounded-lg border border-gray-200">
-                        <div className="text-gray-600 text-sm">Durée restante</div>
-                        <div className="text-gray-900 font-bold">45 minutes</div>
+                        <div className="text-sm" style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}>
+                          Durée restante
+                        </div>
+                        <div className="font-bold" style={{ color: 'var(--nova-heading)' }}>45 minutes</div>
                       </div>
                     </div>
                   </div>
@@ -225,96 +210,80 @@ const KaizenAcademia = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </Reveal>
+      </Section>
 
-      {/* Advantages */}
-      <section className="py-20 bg-red-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Pourquoi Choisir <span className="text-red-600">Kaizen Academia</span> ?
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Une plateforme conçue pour maximiser votre apprentissage et 
-              accélérer votre développement professionnel.
-            </p>
-          </div>
+      {/* Avantages */}
+      <Section>
+        <SectionTitle
+          title="Pourquoi Choisir Kaizen Academia ?"
+          description="Une plateforme conçue pour maximiser votre apprentissage et accélérer votre développement professionnel."
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {advantages.map((advantage, index) => (
-              <div 
-                key={index}
-                className="group bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-red-300"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-r ${advantage.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <advantage.icon className="text-white" size={32} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {advantages.map((advantage, index) => (
+            <Reveal key={advantage.title} delay={100 * (index + 1)}>
+              <div className="group bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 h-full">
+                <div
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                  style={{ backgroundColor: 'var(--nova-accent)' }}
+                >
+                  <advantage.icon className="text-white" size={30} strokeWidth={1.5} />
                 </div>
-                
-                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors duration-300">
+
+                <h3
+                  className="text-xl font-bold mb-4 transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                  style={{ color: 'var(--nova-heading)' }}
+                >
                   {advantage.title}
                 </h3>
-                
-                <p className="text-gray-600 leading-relaxed">
+
+                <p
+                  className="leading-relaxed text-[15px]"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
                   {advantage.description}
                 </p>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Features */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Fonctionnalités <span className="text-red-600">Avancées</span>
-            </h2>
-          </div>
+      {/* Fonctionnalités */}
+      <Section light>
+        <SectionTitle
+          title="Fonctionnalités Avancées"
+          description="Tout ce qu'il faut pour apprendre efficacement, sur un seul espace."
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <div 
-                key={index}
-                className="flex items-center bg-gray-50 p-6 rounded-xl border border-gray-200 hover:border-red-300 transition-all duration-300 group"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="text-white" size={24} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <Reveal key={feature.text} delay={60 * index}>
+              <div className="flex items-center bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 group h-full">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                  style={{ backgroundColor: 'var(--nova-accent)' }}
+                >
+                  <feature.icon className="text-white" size={22} />
                 </div>
-                <span className="text-gray-900 font-medium group-hover:text-red-600 transition-colors duration-300">
+                <span
+                  className="font-medium transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                  style={{ color: 'var(--nova-heading)' }}
+                >
                   {feature.text}
                 </span>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#b00000] to-red-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            Prêt à Transformer Votre Carrière ?
-          </h2>
-          <p className="text-xl text-red-100 mb-8 max-w-3xl mx-auto">
-            Rejoignez des milliers de professionnels qui ont choisi Kaizen Academia 
-            pour développer leurs compétences et accélérer leur réussite.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a 
-              href="https://kaizenstrategyci.online"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white text-[#b00000] px-10 py-4 rounded-xl hover:shadow-2xl transition-all duration-300 font-bold text-lg inline-flex items-center justify-center"
-            >
-              <CheckCircle size={24} className="mr-3" />
-              Commencer Maintenant
-              <ArrowRight size={24} className="ml-3 group-hover:translate-x-2 transition-transform duration-300" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <CallToAction
+        title="Prêt à Transformer Votre Carrière ?"
+        description="Rejoignez des milliers de professionnels qui ont choisi Kaizen Academia pour développer leurs compétences et accélérer leur réussite."
+        actions={[{ label: 'Commencer Maintenant', href: 'https://kaizenstrategyci.online' }]}
+      />
     </div>
   );
 };

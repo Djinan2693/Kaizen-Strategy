@@ -1,352 +1,228 @@
-import { BarChart, TrendingUp, Users, Target, CheckCircle, ArrowRight, Search, FileText } from 'lucide-react';
+import { BarChart, TrendingUp, Users, Target, Search, FileText } from 'lucide-react';
+import { PageTitle, Section, SectionTitle, CallToAction, CheckList, Reveal } from './nova';
 
 const StudiesResearchPage = () => {
+  const services = [
+    {
+      icon: TrendingUp,
+      title: "Études de Marché",
+      description: "Analyse complète de votre secteur, concurrence, opportunités et menaces du marché.",
+      features: ["Taille et évolution du marché", "Analyse concurrentielle", "Segments porteurs"]
+    },
+    {
+      icon: Users,
+      title: "Comportement Consommateur",
+      description: "Comprenez vos clients : motivations, freins, parcours d'achat et préférences.",
+      features: ["Personas détaillés", "Parcours client", "Insights comportementaux"]
+    },
+    {
+      icon: Target,
+      title: "Études de Faisabilité",
+      description: "Évaluez la viabilité de vos projets avant investissement : risques, ROI, contraintes.",
+      features: ["Analyse financière", "Évaluation des risques", "Recommandations"]
+    },
+    {
+      icon: BarChart,
+      title: "Suivi et évaluation",
+      description: "Mesure de performance, impact des actions et ajustements stratégiques continus.",
+      features: ["Indicateurs de performance", "Tableaux de bord", "Rapports d'évaluation"]
+    },
+    {
+      icon: Users,
+      title: "Étude socio-économique",
+      description: "Analyse des impacts sociaux et économiques de vos projets sur les communautés.",
+      features: ["Impact socio-économique", "Analyse démographique", "Développement durable"]
+    },
+    {
+      icon: Target,
+      title: "Étude organisationnelle",
+      description: "Analyse des structures, processus et culture organisationnelle pour optimiser les performances.",
+      features: ["Audit organisationnel", "Processus métiers", "Culture d'entreprise"]
+    }
+  ];
+
+  const methodology = [
+    {
+      title: "Cadrage & Objectifs",
+      description: "Définition précise des questions de recherche et périmètre d'étude"
+    },
+    {
+      title: "Collecte de Données",
+      description: "Sources primaires et secondaires, entretiens, sondages, observation"
+    },
+    {
+      title: "Analyse & Traitement",
+      description: "Traitement statistique et analyse qualitative des données"
+    },
+    {
+      title: "Recommandations",
+      description: "Insights actionnables et plan d'action stratégique"
+    }
+  ];
+
+  const typesEtudes = [
+    {
+      title: "Études Sectorielles",
+      items: [
+        "Analyse de l'écosystème sectoriel",
+        "Tendances et évolutions du marché",
+        "Cartographie des acteurs clés",
+        "Opportunités d'investissement"
+      ]
+    },
+    {
+      title: "Études Personnalisées",
+      items: [
+        "Due diligence commerciale",
+        "Évaluation de potentiel marché",
+        "Benchmark concurrentiel",
+        "Positionnement stratégique"
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen relative">
-      {/* Hero Section */}
-      <div className="relative pt-24 pb-16 px-4 min-h-screen flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src="/recherche.jpg" 
-            alt="Études et Recherches - Analyses de marché"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-800/70 to-transparent"></div>
-        </div>
-        
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-blue-600/20 border border-blue-500/30 rounded-full px-6 py-3 mb-6">
-              <BarChart className="text-blue-400 w-5 h-5 mr-2" />
-              <span className="text-blue-300 font-medium">Analyses de Marché</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-              Études & Recherches
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Prenez des décisions éclairées grâce à nos analyses approfondies et études de marché. 
-              Des insights précis pour orienter votre stratégie.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white">
+      <PageTitle
+        title="Études & Recherches"
+        subtitle="Prenez des décisions éclairées grâce à nos analyses approfondies et études de marché. Des insights précis pour orienter votre stratégie."
+        breadcrumbs={[{ label: 'Expertises' }, { label: 'Études & Recherches' }]}
+        image="/nova/portfolio-page-title-bg.jpg"
+      />
 
       {/* Services d'Études */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Nos Services d'Études
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Une gamme complète d'analyses pour éclairer vos décisions stratégiques
-            </p>
-          </div>
+      <Section>
+        <SectionTitle
+          title="Nos Services d'Études"
+          description="Une gamme complète d'analyses pour éclairer vos décisions stratégiques"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-              <TrendingUp className="text-blue-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Études de Marché</h3>
-              <p className="text-gray-400 mb-6">
-                Analyse complète de votre secteur, concurrence, opportunités et menaces du marché.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Taille et évolution du marché
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Analyse concurrentielle
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Segments porteurs
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-              <Users className="text-green-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Comportement Consommateur</h3>
-              <p className="text-gray-400 mb-6">
-                Comprenez vos clients : motivations, freins, parcours d'achat et préférences.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Personas détaillés
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Parcours client
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Insights comportementaux
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-              <Target className="text-red-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Études de Faisabilité</h3>
-              <p className="text-gray-400 mb-6">
-                Évaluez la viabilité de vos projets avant investissement : risques, ROI, contraintes.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Analyse financière
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Évaluation des risques
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Recommandations
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-              <BarChart className="text-purple-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Suivi et évaluation</h3>
-              <p className="text-gray-400 mb-6">
-                Mesure de performance, impact des actions et ajustements stratégiques continus.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Indicateurs de performance
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Tableaux de bord
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Rapports d'évaluation
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-              <Users className="text-orange-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Étude socio-économique</h3>
-              <p className="text-gray-400 mb-6">
-                Analyse des impacts sociaux et économiques de vos projets sur les communautés.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Impact socio-économique
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Analyse démographique
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Développement durable
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/30 transition-all duration-300">
-              <Target className="text-cyan-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Étude organisationnelle</h3>
-              <p className="text-gray-400 mb-6">
-                Analyse des structures, processus et culture organisationnelle pour optimiser les performances.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Audit organisationnel
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Processus métiers
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Culture d'entreprise
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <Reveal key={service.title} delay={100 * (index + 1)}>
+              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 h-full group">
+                <service.icon
+                  size={44}
+                  strokeWidth={1.5}
+                  className="mb-6"
+                  style={{ color: 'var(--nova-accent)' }}
+                />
+                <h3
+                  className="text-xl font-bold mb-4 transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                  style={{ color: 'var(--nova-heading)' }}
+                >
+                  {service.title}
+                </h3>
+                <p
+                  className="mb-6 text-[15px] leading-relaxed"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {service.description}
+                </p>
+                <CheckList items={service.features} className="text-[15px]" />
+              </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </Section>
 
       {/* Méthodologie */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Notre <span className="text-blue-500">Méthodologie</span>
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                Une approche rigoureuse combinant méthodes quantitatives et qualitatives 
-                pour des résultats fiables et exploitables.
+      <Section light>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <Reveal delay={100}>
+            <h2
+              className="text-2xl md:text-[32px] font-bold mb-6 relative pb-5 inline-block"
+              style={{ color: 'var(--nova-heading)' }}
+            >
+              Notre Méthodologie
+              <span
+                className="absolute bottom-0 left-0 block w-[50px] h-[3px]"
+                style={{ backgroundColor: 'var(--nova-accent)' }}
+              ></span>
+            </h2>
+            <p
+              className="text-lg mb-8 leading-relaxed"
+              style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 25%)' }}
+            >
+              Une approche rigoureuse combinant méthodes quantitatives et qualitatives
+              pour des résultats fiables et exploitables.
+            </p>
+
+            <div className="space-y-6">
+              {methodology.map((step, index) => (
+                <div key={step.title} className="flex items-start gap-4">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
+                    style={{ backgroundColor: 'var(--nova-accent)' }}
+                  >
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1.5" style={{ color: 'var(--nova-heading)' }}>
+                      {step.title}
+                    </h3>
+                    <p
+                      className="text-[15px]"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                    >
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="rounded-xl p-8 text-white" style={{ backgroundColor: 'var(--nova-dark-bg)' }}>
+              <Search size={56} strokeWidth={1.3} className="mb-6 text-white" />
+              <h3 className="text-2xl font-bold mb-4 text-white">Recherche Avancée</h3>
+              <p className="text-white/85 mb-6 leading-relaxed">
+                Nos experts utilisent les dernières techniques d'analyse pour vous fournir
+                des insights précis et exploitables.
               </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">1</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Cadrage & Objectifs</h3>
-                    <p className="text-gray-400">Définition précise des questions de recherche et périmètre d'étude</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">2</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Collecte de Données</h3>
-                    <p className="text-gray-400">Sources primaires et secondaires, entretiens, sondages, observation</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">3</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Analyse & Traitement</h3>
-                    <p className="text-gray-400">Traitement statistique et analyse qualitative des données</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">4</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Recommandations</h3>
-                    <p className="text-gray-400">Insights actionnables et plan d'action stratégique</p>
-                  </div>
-                </div>
-              </div>
+              <CheckList light items={["Analyse Big Data", "Machine Learning", "Modélisation prédictive"]} />
             </div>
-            
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600/20 to-gray-800/20 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-                <Search className="text-blue-500 w-16 h-16 mb-6" />
-                <h3 className="text-2xl font-bold text-white mb-4">Recherche Avancée</h3>
-                <p className="text-gray-300 mb-6">
-                  Nos experts utilisent les dernières techniques d'analyse pour vous fournir 
-                  des insights précis et exploitables.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Analyse Big Data
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Machine Learning
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Modélisation prédictive
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </div>
-      </div>
+      </Section>
 
       {/* Types d'Études */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Types d'Études Proposées
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Des analyses sur mesure adaptées à vos besoins sectoriels et stratégiques
-            </p>
-          </div>
+      <Section>
+        <SectionTitle
+          title="Types d'Études Proposées"
+          description="Des analyses sur mesure adaptées à vos besoins sectoriels et stratégiques"
+        />
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-white mb-4">Études Sectorielles</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-center">
-                  <FileText className="text-blue-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Analyse de l'écosystème sectoriel
-                </li>
-                <li className="flex items-center">
-                  <FileText className="text-blue-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Tendances et évolutions du marché
-                </li>
-                <li className="flex items-center">
-                  <FileText className="text-blue-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Cartographie des acteurs clés
-                </li>
-                <li className="flex items-center">
-                  <FileText className="text-blue-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Opportunités d'investissement
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-white mb-4">Études Personnalisées</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-center">
-                  <FileText className="text-green-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Due diligence commerciale
-                </li>
-                <li className="flex items-center">
-                  <FileText className="text-green-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Évaluation de potentiel marché
-                </li>
-                <li className="flex items-center">
-                  <FileText className="text-green-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Benchmark concurrentiel
-                </li>
-                <li className="flex items-center">
-                  <FileText className="text-green-500 w-4 h-4 mr-3 flex-shrink-0" />
-                  Positionnement stratégique
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {typesEtudes.map((type, index) => (
+            <Reveal key={type.title} delay={100 * (index + 1)}>
+              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 h-full">
+                <h3 className="text-xl font-bold mb-5" style={{ color: 'var(--nova-heading)' }}>
+                  {type.title}
+                </h3>
+                <ul className="space-y-3">
+                  {type.items.map((item) => (
+                    <li key={item} className="flex items-center gap-3" style={{ color: 'var(--nova-default)' }}>
+                      <FileText size={18} className="flex-shrink-0" style={{ color: 'var(--nova-accent)' }} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </Section>
 
-      {/* CTA Section */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-gradient-to-r from-blue-600/20 to-gray-800/20 backdrop-blur-xl border border-white/10 rounded-2xl p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Besoin d'une Étude Spécifique ?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Nos experts sont à votre disposition pour concevoir l'étude qui répondra 
-              précisément à vos enjeux stratégiques.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 font-semibold flex items-center justify-center">
-                Discuter de votre projet
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
-              <button className="border border-white/20 text-white px-8 py-4 rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold">
-                Voir nos études types
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CallToAction
+        title="Besoin d'une Étude Spécifique ?"
+        description="Nos experts sont à votre disposition pour concevoir l'étude qui répondra précisément à vos enjeux stratégiques."
+        actions={[
+          { label: 'Discuter de votre projet' },
+          { label: 'Voir nos études types', outline: true }
+        ]}
+      />
     </div>
   );
 };

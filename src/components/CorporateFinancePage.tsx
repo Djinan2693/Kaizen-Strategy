@@ -1,310 +1,258 @@
-import { DollarSign, TrendingUp, PieChart, Calculator, CheckCircle, ArrowRight, Briefcase, Target, BarChart } from 'lucide-react';
+import { DollarSign, TrendingUp, PieChart, Calculator, Briefcase, Target, BarChart } from 'lucide-react';
+import { PageTitle, Section, SectionTitle, ServiceItem, CallToAction, CheckList, Reveal } from './nova';
 
 const CorporateFinancePage = () => {
+  const services = [
+    {
+      icon: TrendingUp,
+      title: "Planification Financière",
+      description: "Élaboration de stratégies financières alignées sur vos objectifs de croissance.",
+      features: ["Business plan & prévisions", "Optimisation structure capital", "Gestion trésorerie"]
+    },
+    {
+      icon: PieChart,
+      title: "Levée de Fonds",
+      description: "Accompagnement complet dans vos projets de financement et levées de capitaux.",
+      features: ["Préparation due diligence", "Valorisation entreprise", "Négociation investisseurs"]
+    },
+    {
+      icon: Calculator,
+      title: "M&A Advisory",
+      description: "Conseil en fusions-acquisitions pour optimiser votre croissance externe.",
+      features: ["Identification cibles", "Due diligence financière", "Structuration opération"]
+    }
+  ];
+
+  const analytics = [
+    {
+      icon: BarChart,
+      title: "Tableaux de Bord Financiers",
+      description: "KPIs personnalisés, reporting automatisé et alertes en temps réel"
+    },
+    {
+      icon: Target,
+      title: "Analyse de Rentabilité",
+      description: "ROI par projet, marge par segment, optimisation pricing"
+    },
+    {
+      icon: TrendingUp,
+      title: "Modélisation Prédictive",
+      description: "Forecasting avancé, stress tests et simulations de scénarios"
+    }
+  ];
+
+  const domaines = [
+    {
+      icon: Briefcase,
+      title: "Restructuration",
+      description: "Redressement financier, renégociation dette, plans de sauvegarde"
+    },
+    {
+      icon: TrendingUp,
+      title: "Croissance",
+      description: "Financement expansion, stratégie croissance, internationalisation"
+    },
+    {
+      icon: PieChart,
+      title: "Valorisation",
+      description: "Évaluation entreprise, création de valeur, exit strategies"
+    },
+    {
+      icon: Calculator,
+      title: "Optimisation",
+      description: "Réduction coûts, amélioration marges, efficacité opérationnelle"
+    }
+  ];
+
+  const approche = [
+    {
+      title: "Diagnostic",
+      description: "Analyse approfondie de votre situation financière et identification des enjeux"
+    },
+    {
+      title: "Stratégie",
+      description: "Élaboration d'un plan d'action personnalisé et de solutions adaptées"
+    },
+    {
+      title: "Exécution",
+      description: "Mise en œuvre des recommandations avec accompagnement opérationnel"
+    },
+    {
+      title: "Monitoring",
+      description: "Suivi des résultats et ajustements pour garantir l'atteinte des objectifs"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Hero Section */}
-      <div className="relative pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-green-600/20 border border-green-500/30 rounded-full px-6 py-3 mb-6">
-              <DollarSign className="text-green-400 w-5 h-5 mr-2" />
-              <span className="text-green-300 font-medium">Optimisation Financière</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-              Corporate Finance
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Maximisez la valeur de votre entreprise avec nos expertises en finance d'entreprise. 
-              Stratégie financière, optimisation et croissance durable.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white">
+      <PageTitle
+        title="Corporate Finance"
+        subtitle="Maximisez la valeur de votre entreprise avec nos expertises en finance d'entreprise. Stratégie financière, optimisation et croissance durable."
+        breadcrumbs={[{ label: 'Expertises' }, { label: 'Corporate Finance' }]}
+        image="/nova/about-page-title-bg.jpg"
+      />
 
-      {/* Services Finance */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Nos Expertises Financières
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Des solutions complètes pour optimiser votre performance financière et créer de la valeur
-            </p>
-          </div>
+      {/* Expertises financières */}
+      <Section>
+        <SectionTitle
+          title="Nos Expertises Financières"
+          description="Des solutions complètes pour optimiser votre performance financière et créer de la valeur"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-green-500/30 transition-all duration-300">
-              <TrendingUp className="text-green-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Planification Financière</h3>
-              <p className="text-gray-400 mb-6">
-                Élaboration de stratégies financières alignées sur vos objectifs de croissance.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Business plan & prévisions
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Optimisation structure capital
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Gestion trésorerie
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-green-500/30 transition-all duration-300">
-              <PieChart className="text-blue-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Levée de Fonds</h3>
-              <p className="text-gray-400 mb-6">
-                Accompagnement complet dans vos projets de financement et levées de capitaux.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Préparation due diligence
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Valorisation entreprise
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Négociation investisseurs
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-green-500/30 transition-all duration-300">
-              <Calculator className="text-purple-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">M&A Advisory</h3>
-              <p className="text-gray-400 mb-6">
-                Conseil en fusions-acquisitions pour optimiser votre croissance externe.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Identification cibles
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Due diligence financière
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Structuration opération
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Performance & Analytics */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Performance <span className="text-green-500">Analytics</span>
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                Transformez vos données financières en insights actionnables pour piloter 
-                efficacement votre performance et anticiper les tendances.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <BarChart className="text-white w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Tableaux de Bord Financiers</h3>
-                    <p className="text-gray-400">KPIs personnalisés, reporting automatisé et alertes en temps réel</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Target className="text-white w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Analyse de Rentabilité</h3>
-                    <p className="text-gray-400">ROI par projet, marge par segment, optimisation pricing</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <TrendingUp className="text-white w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Modélisation Prédictive</h3>
-                    <p className="text-gray-400">Forecasting avancé, stress tests et simulations de scénarios</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-600/20 to-gray-800/20 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-                <DollarSign className="text-green-500 w-16 h-16 mb-6" />
-                <h3 className="text-2xl font-bold text-white mb-4">Optimisation ROI</h3>
-                <p className="text-gray-300 mb-6">
-                  Nos modèles financiers avancés identifient les leviers de performance 
-                  pour maximiser votre retour sur investissement.
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <Reveal key={service.title} delay={100 * (index + 1)}>
+              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 h-full group">
+                <service.icon
+                  size={44}
+                  strokeWidth={1.5}
+                  className="mb-6"
+                  style={{ color: 'var(--nova-accent)' }}
+                />
+                <h3
+                  className="text-xl font-bold mb-4 transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                  style={{ color: 'var(--nova-heading)' }}
+                >
+                  {service.title}
+                </h3>
+                <p
+                  className="mb-6 text-[15px] leading-relaxed"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {service.description}
                 </p>
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Analyse de sensibilité
+                <CheckList items={service.features} className="text-[15px]" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* Performance Analytics */}
+      <Section light>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <Reveal delay={100}>
+            <h2
+              className="text-2xl md:text-[32px] font-bold mb-6 relative pb-5 inline-block"
+              style={{ color: 'var(--nova-heading)' }}
+            >
+              Performance Analytics
+              <span
+                className="absolute bottom-0 left-0 block w-[50px] h-[3px]"
+                style={{ backgroundColor: 'var(--nova-accent)' }}
+              ></span>
+            </h2>
+            <p
+              className="text-lg mb-8 leading-relaxed"
+              style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 25%)' }}
+            >
+              Transformez vos données financières en insights actionnables pour piloter
+              efficacement votre performance et anticiper les tendances.
+            </p>
+
+            <div className="space-y-6">
+              {analytics.map((item) => (
+                <div key={item.title} className="flex items-start gap-4">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: 'var(--nova-accent)' }}
+                  >
+                    <item.icon size={20} className="text-white" />
                   </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Optimisation portefeuille
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Allocation ressources
+                  <div>
+                    <h3 className="font-bold mb-1.5" style={{ color: 'var(--nova-heading)' }}>
+                      {item.title}
+                    </h3>
+                    <p
+                      className="text-[15px]"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                    >
+                      {item.description}
+                    </p>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="rounded-xl p-8 text-white" style={{ backgroundColor: 'var(--nova-dark-bg)' }}>
+              <DollarSign size={56} strokeWidth={1.3} className="mb-6 text-white" />
+              <h3 className="text-2xl font-bold mb-4 text-white">Optimisation ROI</h3>
+              <p className="text-white/85 mb-6 leading-relaxed">
+                Nos modèles financiers avancés identifient les leviers de performance
+                pour maximiser votre retour sur investissement.
+              </p>
+              <CheckList
+                light
+                items={["Analyse de sensibilité", "Optimisation portefeuille", "Allocation ressources"]}
+              />
+            </div>
+          </Reveal>
         </div>
-      </div>
+      </Section>
 
-      {/* Domaines d'Intervention */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Domaines d'Intervention
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Une expertise transverse pour tous vos enjeux de finance d'entreprise
-            </p>
-          </div>
+      {/* Domaines d'intervention */}
+      <Section>
+        <SectionTitle
+          title="Domaines d'Intervention"
+          description="Une expertise transverse pour tous vos enjeux de finance d'entreprise"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-green-500/30 transition-all duration-300 text-center">
-              <Briefcase className="text-blue-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Restructuration</h3>
-              <p className="text-gray-400 text-sm">
-                Redressement financier, renégociation dette, plans de sauvegarde
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-green-500/30 transition-all duration-300 text-center">
-              <TrendingUp className="text-green-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Croissance</h3>
-              <p className="text-gray-400 text-sm">
-                Financement expansion, stratégie croissance, internationalisation
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-green-500/30 transition-all duration-300 text-center">
-              <PieChart className="text-purple-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Valorisation</h3>
-              <p className="text-gray-400 text-sm">
-                Évaluation entreprise, creation de valeur, exit strategies
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-green-500/30 transition-all duration-300 text-center">
-              <Calculator className="text-yellow-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Optimisation</h3>
-              <p className="text-gray-400 text-sm">
-                Réduction coûts, amélioration marges, efficacité opérationnelle
-              </p>
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
+          {domaines.map((domaine, index) => (
+            <ServiceItem
+              key={domaine.title}
+              icon={domaine.icon}
+              title={domaine.title}
+              description={domaine.description}
+              delay={100 * (index + 1)}
+              boxed
+            />
+          ))}
         </div>
-      </div>
+      </Section>
 
-      {/* Processus */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Notre Approche
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Une méthodologie structurée pour maximiser la valeur de vos projets financiers
-            </p>
-          </div>
+      {/* Notre approche */}
+      <Section light>
+        <SectionTitle
+          title="Notre Approche"
+          description="Une méthodologie structurée pour maximiser la valeur de vos projets financiers"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">1</span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {approche.map((step, index) => (
+            <Reveal key={step.title} delay={100 * (index + 1)}>
+              <div className="text-center">
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl"
+                  style={{ backgroundColor: 'var(--nova-accent)' }}
+                >
+                  {index + 1}
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: 'var(--nova-heading)' }}>
+                  {step.title}
+                </h3>
+                <p
+                  className="text-[15px] leading-relaxed"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {step.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Diagnostic</h3>
-              <p className="text-gray-400">
-                Analyse approfondie de votre situation financière et identification des enjeux
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">2</span>
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Stratégie</h3>
-              <p className="text-gray-400">
-                Élaboration d'un plan d'action personnalisé et de solutions adaptées
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">3</span>
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Exécution</h3>
-              <p className="text-gray-400">
-                Mise en œuvre des recommandations avec accompagnement opérationnel
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">4</span>
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Monitoring</h3>
-              <p className="text-gray-400">
-                Suivi des résultats et ajustements pour garantir l'atteinte des objectifs
-              </p>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </Section>
 
-      {/* CTA Section */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-gradient-to-r from-green-600/20 to-gray-800/20 backdrop-blur-xl border border-white/10 rounded-2xl p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Optimisez Votre Performance Financière
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Découvrez comment nos solutions de corporate finance peuvent accélérer 
-              votre croissance et maximiser la valeur de votre entreprise.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 font-semibold flex items-center justify-center">
-                Diagnostic Financier
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
-              <button className="border border-white/20 text-white px-8 py-4 rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold">
-                Nos Success Stories
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CallToAction
+        title="Optimisez Votre Performance Financière"
+        description="Découvrez comment nos solutions de corporate finance peuvent accélérer votre croissance et maximiser la valeur de votre entreprise."
+        actions={[
+          { label: 'Diagnostic Financier' },
+          { label: 'Nos Success Stories', outline: true }
+        ]}
+      />
     </div>
   );
 };

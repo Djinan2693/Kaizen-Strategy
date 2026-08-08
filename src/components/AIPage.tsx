@@ -1,311 +1,256 @@
-import { Brain, Cpu, Zap, Target, CheckCircle, ArrowRight, Settings, BarChart, Users } from 'lucide-react';
+import { Brain, Cpu, Zap, Target, Settings, BarChart, Users } from 'lucide-react';
+import { PageTitle, Section, SectionTitle, ServiceItem, CallToAction, CheckList, Reveal } from './nova';
 
 const AIPage = () => {
+  const services = [
+    {
+      icon: Settings,
+      title: "Audit de Maturité IA",
+      description: "Évaluation complète de votre niveau de préparation à l'intelligence artificielle.",
+      features: ["Diagnostic des données", "Évaluation infrastructure", "Analyse des compétences"]
+    },
+    {
+      icon: Cpu,
+      title: "Stratégie IA",
+      description: "Élaboration d'une roadmap IA alignée sur vos objectifs business.",
+      features: ["Identification use cases", "Priorisation projets", "Plan d'implémentation"]
+    },
+    {
+      icon: Zap,
+      title: "Implémentation",
+      description: "Déploiement et intégration de solutions IA dans vos processus métier.",
+      features: ["Développement modèles", "Intégration système", "Formation équipes"]
+    }
+  ];
+
+  const useCases = [
+    {
+      icon: Users,
+      title: "Service Client",
+      description: "Chatbots intelligents, analyse sentiment, routing automatique"
+    },
+    {
+      icon: BarChart,
+      title: "Analytics",
+      description: "Prédictions, détection anomalies, insights automatisés"
+    },
+    {
+      icon: Target,
+      title: "Marketing",
+      description: "Personnalisation, recommandations, optimisation campagnes"
+    },
+    {
+      icon: Settings,
+      title: "Opérations",
+      description: "Automatisation processus, maintenance prédictive, optimisation"
+    }
+  ];
+
+  const processus = [
+    {
+      title: "Discovery & Audit",
+      description: "Analyse approfondie de vos besoins, données et infrastructure existante"
+    },
+    {
+      title: "Stratégie & Design",
+      description: "Définition de la roadmap IA et architecture des solutions"
+    },
+    {
+      title: "Développement & Test",
+      description: "Création des modèles IA et validation sur environnements de test"
+    },
+    {
+      title: "Déploiement & Suivi",
+      description: "Mise en production, formation utilisateurs et monitoring performance"
+    }
+  ];
+
+  const technologies = [
+    {
+      title: "Machine Learning",
+      items: ["TensorFlow • PyTorch", "Scikit-learn • XGBoost", "MLflow • Kubeflow"]
+    },
+    {
+      title: "Cloud & Infra",
+      items: ["AWS • Azure • GCP", "Docker • Kubernetes", "Apache Spark • Hadoop"]
+    },
+    {
+      title: "NLP & Vision",
+      items: ["OpenAI • Hugging Face", "spaCy • NLTK", "OpenCV • YOLO"]
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-      {/* Hero Section */}
-      <div className="relative pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-purple-600/20 border border-purple-500/30 rounded-full px-6 py-3 mb-6">
-              <Brain className="text-purple-400 w-5 h-5 mr-2" />
-              <span className="text-purple-300 font-medium">Diagnostic & Implémentation</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-              Intelligence Artificielle
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Transformez votre entreprise avec l'IA. De l'audit de maturité à l'implémentation complète, 
-              nous vous accompagnons dans votre révolution digitale.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white">
+      <PageTitle
+        title="Intelligence Artificielle"
+        subtitle="Transformez votre entreprise avec l'IA. De l'audit de maturité à l'implémentation complète, nous vous accompagnons dans votre révolution digitale."
+        breadcrumbs={[{ label: 'Expertises' }, { label: 'Intelligence Artificielle' }]}
+        image="/nova/blog-page-title-bg.jpg"
+      />
 
       {/* Services IA */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Nos Services IA
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Une approche complète pour intégrer l'intelligence artificielle dans votre stratégie
-            </p>
-          </div>
+      <Section>
+        <SectionTitle
+          title="Nos Services IA"
+          description="Une approche complète pour intégrer l'intelligence artificielle dans votre stratégie"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-purple-500/30 transition-all duration-300">
-              <Settings className="text-purple-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Audit de Maturité IA</h3>
-              <p className="text-gray-400 mb-6">
-                Évaluation complète de votre niveau de préparation à l'intelligence artificielle.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Diagnostic des données
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Évaluation infrastructure
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Analyse des compétences
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-purple-500/30 transition-all duration-300">
-              <Cpu className="text-blue-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Stratégie IA</h3>
-              <p className="text-gray-400 mb-6">
-                Élaboration d'une roadmap IA alignée sur vos objectifs business.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Identification use cases
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Priorisation projets
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Plan d'implémentation
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-purple-500/30 transition-all duration-300">
-              <Zap className="text-yellow-500 w-12 h-12 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-4">Implémentation</h3>
-              <p className="text-gray-400 mb-6">
-                Déploiement et intégration de solutions IA dans vos processus métier.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Développement modèles
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Intégration système
-                </li>
-                <li className="flex items-center">
-                  <CheckCircle className="text-green-500 w-4 h-4 mr-2 flex-shrink-0" />
-                  Formation équipes
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <Reveal key={service.title} delay={100 * (index + 1)}>
+              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 h-full group">
+                <service.icon
+                  size={44}
+                  strokeWidth={1.5}
+                  className="mb-6"
+                  style={{ color: 'var(--nova-accent)' }}
+                />
+                <h3
+                  className="text-xl font-bold mb-4 transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                  style={{ color: 'var(--nova-heading)' }}
+                >
+                  {service.title}
+                </h3>
+                <p
+                  className="mb-6 text-[15px] leading-relaxed"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {service.description}
+                </p>
+                <CheckList items={service.features} className="text-[15px]" />
+              </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </Section>
 
-      {/* Use Cases IA */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Applications <span className="text-purple-500">Concrètes</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              L'IA au service de tous vos métiers pour améliorer performance et efficacité
-            </p>
-          </div>
+      {/* Applications concrètes */}
+      <Section light>
+        <SectionTitle
+          title="Applications Concrètes"
+          description="L'IA au service de tous vos métiers pour améliorer performance et efficacité"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 text-center">
-              <Users className="text-green-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Service Client</h3>
-              <p className="text-gray-400 text-sm">
-                Chatbots intelligents, analyse sentiment, routing automatique
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 text-center">
-              <BarChart className="text-blue-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Analytics</h3>
-              <p className="text-gray-400 text-sm">
-                Prédictions, détection anomalies, insights automatisés
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 text-center">
-              <Target className="text-red-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Marketing</h3>
-              <p className="text-gray-400 text-sm">
-                Personnalisation, recommandations, optimisation campagnes
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 text-center">
-              <Settings className="text-purple-500 w-12 h-12 mb-4 mx-auto" />
-              <h3 className="text-lg font-semibold text-white mb-3">Opérations</h3>
-              <p className="text-gray-400 text-sm">
-                Automatisation processus, maintenance prédictive, optimisation
-              </p>
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
+          {useCases.map((useCase, index) => (
+            <ServiceItem
+              key={useCase.title}
+              icon={useCase.icon}
+              title={useCase.title}
+              description={useCase.description}
+              delay={100 * (index + 1)}
+              boxed
+            />
+          ))}
         </div>
-      </div>
+      </Section>
 
       {/* Processus d'Implémentation */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Processus d'<span className="text-purple-500">Implémentation</span>
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                Une méthodologie éprouvée pour garantir le succès de vos projets IA, 
-                de la conception au déploiement.
+      <Section>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <Reveal delay={100}>
+            <h2
+              className="text-2xl md:text-[32px] font-bold mb-6 relative pb-5 inline-block"
+              style={{ color: 'var(--nova-heading)' }}
+            >
+              Processus d'Implémentation
+              <span
+                className="absolute bottom-0 left-0 block w-[50px] h-[3px]"
+                style={{ backgroundColor: 'var(--nova-accent)' }}
+              ></span>
+            </h2>
+            <p
+              className="text-lg mb-8 leading-relaxed"
+              style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 25%)' }}
+            >
+              Une méthodologie éprouvée pour garantir le succès de vos projets IA,
+              de la conception au déploiement.
+            </p>
+
+            <div className="space-y-6">
+              {processus.map((step, index) => (
+                <div key={step.title} className="flex items-start gap-4">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
+                    style={{ backgroundColor: 'var(--nova-accent)' }}
+                  >
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1.5" style={{ color: 'var(--nova-heading)' }}>
+                      {step.title}
+                    </h3>
+                    <p
+                      className="text-[15px]"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                    >
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="rounded-xl p-8 text-white" style={{ backgroundColor: 'var(--nova-dark-bg)' }}>
+              <Brain size={56} strokeWidth={1.3} className="mb-6 text-white" />
+              <h3 className="text-2xl font-bold mb-4 text-white">IA Responsable</h3>
+              <p className="text-white/85 mb-6 leading-relaxed">
+                Nous mettons l'éthique et la transparence au cœur de nos solutions IA
+                pour garantir des déploiements responsables et durables.
               </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">1</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Discovery & Audit</h3>
-                    <p className="text-gray-400">Analyse approfondie de vos besoins, données et infrastructure existante</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">2</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Stratégie & Design</h3>
-                    <p className="text-gray-400">Définition de la roadmap IA et architecture des solutions</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">3</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Développement & Test</h3>
-                    <p className="text-gray-400">Création des modèles IA et validation sur environnements de test</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-white font-bold text-sm">4</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-2">Déploiement & Suivi</h3>
-                    <p className="text-gray-400">Mise en production, formation utilisateurs et monitoring performance</p>
-                  </div>
-                </div>
-              </div>
+              <CheckList
+                light
+                items={[
+                  "Transparence des algorithmes",
+                  "Protection des données",
+                  "Bias detection & mitigation",
+                  "Conformité réglementaire"
+                ]}
+              />
             </div>
-            
-            <div className="relative">
-              <div className="bg-gradient-to-br from-purple-600/20 to-gray-800/20 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
-                <Brain className="text-purple-500 w-16 h-16 mb-6" />
-                <h3 className="text-2xl font-bold text-white mb-4">IA Responsable</h3>
-                <p className="text-gray-300 mb-6">
-                  Nous mettons l'éthique et la transparence au cœur de nos solutions IA 
-                  pour garantir des déploiements responsables et durables.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Transparence des algorithmes
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Protection des données
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Bias detection & mitigation
-                  </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <CheckCircle className="text-green-500 w-4 h-4 mr-2" />
-                    Conformité réglementaire
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </div>
-      </div>
+      </Section>
 
       {/* Technologies */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Technologies & Partenaires
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Nous maîtrisons l'écosystème complet des technologies IA les plus avancées
-            </p>
-          </div>
+      <Section light>
+        <SectionTitle
+          title="Technologies & Partenaires"
+          description="Nous maîtrisons l'écosystème complet des technologies IA les plus avancées"
+        />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">Machine Learning</h3>
-              <div className="space-y-2 text-gray-300 text-sm">
-                <div>TensorFlow • PyTorch</div>
-                <div>Scikit-learn • XGBoost</div>
-                <div>MLflow • Kubeflow</div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {technologies.map((tech, index) => (
+            <Reveal key={tech.title} delay={100 * (index + 1)}>
+              <div className="bg-white rounded-xl p-8 text-center shadow-sm border border-gray-100 h-full">
+                <h3 className="text-xl font-bold mb-4" style={{ color: 'var(--nova-heading)' }}>
+                  {tech.title}
+                </h3>
+                <div
+                  className="space-y-2 text-[15px]"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {tech.items.map((item) => (
+                    <div key={item}>{item}</div>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">Cloud & Infra</h3>
-              <div className="space-y-2 text-gray-300 text-sm">
-                <div>AWS • Azure • GCP</div>
-                <div>Docker • Kubernetes</div>
-                <div>Apache Spark • Hadoop</div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center">
-              <h3 className="text-xl font-semibold text-white mb-4">NLP & Vision</h3>
-              <div className="space-y-2 text-gray-300 text-sm">
-                <div>OpenAI • Hugging Face</div>
-                <div>spaCy • NLTK</div>
-                <div>OpenCV • YOLO</div>
-              </div>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </Section>
 
-      {/* CTA Section */}
-      <div className="py-20 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="bg-gradient-to-r from-purple-600/20 to-gray-800/20 backdrop-blur-xl border border-white/10 rounded-2xl p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Prêt pour la Révolution IA ?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Découvrez comment l'intelligence artificielle peut transformer votre entreprise. 
-              Commencez par un audit gratuit de votre maturité IA.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-4 rounded-lg hover:shadow-xl transition-all duration-300 font-semibold flex items-center justify-center">
-                Audit IA Gratuit
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
-              <button className="border border-white/20 text-white px-8 py-4 rounded-lg hover:bg-white/10 transition-all duration-300 font-semibold">
-                Voir nos Cas d'Usage
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CallToAction
+        title="Prêt pour la Révolution IA ?"
+        description="Découvrez comment l'intelligence artificielle peut transformer votre entreprise. Commencez par un audit gratuit de votre maturité IA."
+        actions={[
+          { label: 'Audit IA Gratuit' },
+          { label: "Voir nos Cas d'Usage", outline: true }
+        ]}
+      />
     </div>
   );
 };

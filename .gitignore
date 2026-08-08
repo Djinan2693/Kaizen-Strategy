@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Template Nova source (BootstrapMade) - référence locale, non déployée
+nova-new-main
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

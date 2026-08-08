@@ -1,5 +1,5 @@
-import { Target, Eye, Award, CheckCircle, Lightbulb, TrendingUp, Globe } from 'lucide-react';
-import PageHero from './PageHero';
+import { Target, Eye, Award, Lightbulb, TrendingUp, Globe } from 'lucide-react';
+import { PageTitle, Section, SectionTitle, CheckList, Reveal } from './nova';
 
 const MissionPage = () => {
   const values = [
@@ -22,6 +22,24 @@ const MissionPage = () => {
       icon: TrendingUp,
       title: "Amélioration Continue",
       description: "L'esprit Kaizen est au cœur de notre philosophie : progresser constamment et sans relâche."
+    }
+  ];
+
+  const raisonDetre = [
+    {
+      icon: Target,
+      title: "Mission",
+      text: "Accompagner les entreprises dans leur transformation stratégique et digitale en proposant des solutions innovantes, personnalisées et créatrices de valeur durable. Nous croyons en l'amélioration continue comme moteur de l'excellence."
+    },
+    {
+      icon: Eye,
+      title: "Vision",
+      text: "Devenir le partenaire stratégique de référence pour les entreprises ambitieuses, en combinant excellence opérationnelle, innovation technologique et approche humaine. Nous aspirons à créer un impact positif et mesurable."
+    },
+    {
+      icon: Globe,
+      title: "Impact",
+      text: "Contribuer au développement économique en accompagnant les entreprises africaines vers l'excellence internationale, en créant de la valeur partagée et en favorisant l'innovation et l'entrepreneuriat."
     }
   ];
 
@@ -48,242 +66,220 @@ const MissionPage = () => {
     }
   ];
 
+  const engagements = [
+    {
+      title: "Confidentialité Absolue",
+      description: "Protection rigoureuse de vos informations stratégiques et respect total de la confidentialité."
+    },
+    {
+      title: "Résultats Mesurables",
+      description: "Engagement sur des objectifs concrets avec des indicateurs de performance clairement définis."
+    },
+    {
+      title: "Accompagnement Sur-Mesure",
+      description: "Solutions personnalisées adaptées à votre secteur, votre culture et vos enjeux spécifiques."
+    },
+    {
+      title: "Innovation Continue",
+      description: "Veille technologique permanente et intégration des dernières innovations dans nos solutions."
+    }
+  ];
+
+  const atouts = [
+    "Expertise Sectorielle",
+    "Approche Personnalisée",
+    "Résultats Prouvés",
+    "Support Continu"
+  ];
+
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <PageHero
-        badge="À propos de Kaizen Strategy"
+      <PageTitle
         title="Notre Mission"
         subtitle="Accompagner les professionnels, les équipes et les organisations dans le développement de leurs compétences et la recherche de l'excellence."
-        features={[
-          { title: "Excellence", text: "Promouvoir une culture d'amélioration continue" },
-          { title: "Impact", text: "Transformer les compétences en résultats concrets" },
-          { title: "Accompagnement", text: "Guider chaque apprenant vers sa progression" }
-        ]}
+        breadcrumbs={[{ label: 'À propos' }, { label: 'Notre Mission' }]}
+        image="/nova/about-page-title-bg.jpg"
       />
 
-      {/* Mission Statement */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
-                Qui sommes-nous ?
-              </h2>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
-                <p>
-                  <strong className="text-gray-900">KAIZEN STRATEGY</strong> est un cabinet d'études et de conseil, spécialisé 
-                  dans l'accompagnement stratégique des organisations à travers des solutions sur mesure et innovantes. Acteur de référence 
-                  au niveau national et sous régionale, notre approche repose sur l'excellence, la mobilisation du capital humain, 
-                  et l'optimisation des compétences pour répondre aux enjeux de nos partenaires.
+      {/* Qui sommes-nous */}
+      <Section>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <Reveal delay={100}>
+            <h2 className="text-2xl md:text-[32px] font-bold mb-6 relative pb-5 inline-block" style={{ color: 'var(--nova-heading)' }}>
+              Qui sommes-nous ?
+              <span
+                className="absolute bottom-0 left-0 block w-[50px] h-[3px]"
+                style={{ backgroundColor: 'var(--nova-accent)' }}
+              ></span>
+            </h2>
+            <p
+              className="text-lg leading-relaxed"
+              style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 25%)' }}
+            >
+              <strong style={{ color: 'var(--nova-heading)' }}>KAIZEN STRATEGY</strong> est un cabinet d'études et de conseil, spécialisé
+              dans l'accompagnement stratégique des organisations à travers des solutions sur mesure et innovantes. Acteur de référence
+              au niveau national et sous régionale, notre approche repose sur l'excellence, la mobilisation du capital humain,
+              et l'optimisation des compétences pour répondre aux enjeux de nos partenaires.
+            </p>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="rounded-xl p-8 text-white" style={{ backgroundColor: 'var(--nova-dark-bg)' }}>
+              <h3 className="text-2xl font-bold mb-6 text-white">Notre Engagement</h3>
+              <CheckList
+                light
+                items={[
+                  "Accompagnement personnalisé adapté à votre contexte",
+                  "Solutions innovantes basées sur les meilleures pratiques",
+                  "Transfert de compétences pour garantir l'autonomie",
+                  "Mesure rigoureuse de l'impact et des résultats"
+                ]}
+              />
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Mission, Vision, Impact */}
+      <Section light>
+        <SectionTitle
+          title="Notre Raison d'Être"
+          description="Ce qui nous met en mouvement, ce vers quoi nous tendons et ce que nous laissons derrière nous."
+        />
+
+        <div className="grid lg:grid-cols-3 gap-10">
+          {raisonDetre.map((item, index) => (
+            <Reveal key={item.title} delay={100 * (index + 1)}>
+              <div className="text-center h-full">
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                  style={{ backgroundColor: 'var(--nova-accent)' }}
+                >
+                  <item.icon className="text-white" size={38} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--nova-heading)' }}>
+                  {item.title}
+                </h3>
+                <p
+                  className="leading-relaxed text-[15px]"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {item.text}
                 </p>
               </div>
-            </div>
-            <div className="mt-12 lg:mt-0">
-              <div className="bg-gradient-to-br from-[#b00000] to-red-600 rounded-2xl p-8 text-white">
-                <h3 className="text-2xl font-bold mb-6">Notre Engagement</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle size={24} className="text-white flex-shrink-0 mt-1" />
-                    <p>Accompagnement personnalisé adapté à votre contexte</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle size={24} className="text-white flex-shrink-0 mt-1" />
-                    <p>Solutions innovantes basées sur les meilleures pratiques</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle size={24} className="text-white flex-shrink-0 mt-1" />
-                    <p>Transfert de compétences pour garantir l'autonomie</p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle size={24} className="text-white flex-shrink-0 mt-1" />
-                    <p>Mesure rigoureuse de l'impact et des résultats</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
-
-      {/* Mission, Vision, Valeurs */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Notre <span className="text-[#b00000]">Raison d'Être</span>
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-12 mb-20">
-            {/* Mission */}
-            <div className="text-center">
-              <div className="w-20 h-20 bg-[#b00000] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Target className="text-white" size={40} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Mission</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Accompagner les entreprises dans leur transformation stratégique et digitale 
-                en proposant des solutions innovantes, personnalisées et créatrices de valeur durable. 
-                Nous croyons en l'amélioration continue comme moteur de l'excellence.
-              </p>
-            </div>
-
-            {/* Vision */}
-            <div className="text-center">
-              <div className="w-20 h-20 bg-[#b00000] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Eye className="text-white" size={40} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Vision</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Devenir le partenaire stratégique de référence pour les entreprises ambitieuses, 
-                en combinant excellence opérationnelle, innovation technologique et approche humaine. 
-                Nous aspirons à créer un impact positif et mesurable.
-              </p>
-            </div>
-
-            {/* Impact */}
-            <div className="text-center">
-              <div className="w-20 h-20 bg-[#b00000] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Globe className="text-white" size={40} />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Impact</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Contribuer au développement économique en accompagnant les entreprises 
-                africaines vers l'excellence internationale, en créant de la valeur partagée 
-                et en favorisant l'innovation et l'entrepreneuriat.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Nos Valeurs */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Nos <span className="text-[#b00000]">Valeurs Fondamentales</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Les principes qui guident chacune de nos actions et définissent notre identité
-            </p>
-          </div>
+      <Section>
+        <SectionTitle
+          title="Nos Valeurs Fondamentales"
+          description="Les principes qui guident chacune de nos actions et définissent notre identité"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group">
-                <div className="w-16 h-16 bg-gradient-to-br from-[#b00000] to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <value.icon size={32} className="text-white" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {values.map((value, index) => (
+            <Reveal key={value.title} delay={100 * (index + 1)}>
+              <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100 hover:shadow-xl transition-all duration-300 group h-full">
+                <div
+                  className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                  style={{ backgroundColor: 'var(--nova-accent)' }}
+                >
+                  <value.icon size={30} strokeWidth={1.5} className="text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <h3
+                  className="text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                  style={{ color: 'var(--nova-heading)' }}
+                >
+                  {value.title}
+                </h3>
+                <p
+                  className="leading-relaxed text-[15px]"
+                  style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                >
+                  {value.description}
+                </p>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
       {/* Notre Impact */}
-      <section className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              Notre <span className="text-[#b00000]">Impact</span>
-            </h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Des résultats concrets qui témoignent de notre engagement envers l'excellence
-            </p>
-          </div>
+      <Section dark>
+        <SectionTitle
+          light
+          title="Notre Impact"
+          description="Des résultats concrets qui témoignent de notre engagement envers l'excellence"
+        />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {impacts.map((impact, index) => (
-              <div key={index} className="text-center group">
-                <div className="bg-gradient-to-br from-[#b00000] to-red-600 rounded-2xl p-6 mb-4 group-hover:scale-105 transition-transform duration-300">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {impacts.map((impact, index) => (
+            <Reveal key={impact.label} delay={100 * (index + 1)}>
+              <div className="text-center group">
+                <div
+                  className="rounded-xl p-6 mb-4 group-hover:scale-105 transition-transform duration-300"
+                  style={{ backgroundColor: 'var(--nova-dark-surface)' }}
+                >
                   <div className="text-4xl font-bold text-white mb-2">{impact.number}</div>
                   <div className="text-white font-medium">{impact.label}</div>
                 </div>
-                <p className="text-gray-400 text-sm">{impact.description}</p>
+                <p className="text-white/70 text-sm">{impact.description}</p>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
       {/* Nos Engagements */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
-                Nos <span className="text-[#b00000]">Engagements</span>
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#b00000] rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Confidentialité Absolue</h3>
-                    <p className="text-gray-600">Protection rigoureuse de vos informations stratégiques et respect total de la confidentialité.</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#b00000] rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Résultats Mesurables</h3>
-                    <p className="text-gray-600">Engagement sur des objectifs concrets avec des indicateurs de performance clairement définis.</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#b00000] rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Accompagnement Sur-Mesure</h3>
-                    <p className="text-gray-600">Solutions personnalisées adaptées à votre secteur, votre culture et vos enjeux spécifiques.</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#b00000] rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle size={20} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Innovation Continue</h3>
-                    <p className="text-gray-600">Veille technologique permanente et intégration des dernières innovations dans nos solutions.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-12 lg:mt-0">
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Pourquoi Nous Choisir ?</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Expertise Sectorielle</span>
-                    <span className="text-2xl font-bold text-[#b00000]">✓</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Approche Personnalisée</span>
-                    <span className="text-2xl font-bold text-[#b00000]">✓</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Résultats Prouvés</span>
-                    <span className="text-2xl font-bold text-[#b00000]">✓</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Support Continu</span>
-                    <span className="text-2xl font-bold text-[#b00000]">✓</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Section light>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <Reveal delay={100}>
+            <h2 className="text-2xl md:text-[32px] font-bold mb-8 relative pb-5 inline-block" style={{ color: 'var(--nova-heading)' }}>
+              Nos Engagements
+              <span
+                className="absolute bottom-0 left-0 block w-[50px] h-[3px]"
+                style={{ backgroundColor: 'var(--nova-accent)' }}
+              ></span>
+            </h2>
 
+            <div className="space-y-6">
+              {engagements.map((engagement, index) => (
+                <div key={engagement.title} className="flex items-start gap-4">
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
+                    style={{ backgroundColor: 'var(--nova-accent)' }}
+                  >
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1.5" style={{ color: 'var(--nova-heading)' }}>
+                      {engagement.title}
+                    </h3>
+                    <p
+                      className="text-[15px] leading-relaxed"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                    >
+                      {engagement.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--nova-heading)' }}>
+                Pourquoi Nous Choisir ?
+              </h3>
+              <CheckList items={atouts} />
+            </div>
+          </Reveal>
+        </div>
+      </Section>
     </div>
   );
 };

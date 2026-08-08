@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calendar, User, ArrowRight, ArrowLeft, Search, Tag, Clock } from 'lucide-react';
+import { PageTitle, Section, CallToAction, NovaButton, Reveal } from './nova';
 
 interface Article {
   id: string;
@@ -241,28 +242,19 @@ const BlogPage = ({ currentArticle, setCurrentArticle }: BlogPageProps) => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-white py-20 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-8">
-              Blog & <span className="text-[#b00000]">Actualités</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Découvrez nos dernières analyses, tendances et conseils d'experts 
-              pour transformer votre entreprise et accélérer votre croissance.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageTitle
+        title="Blog & Actualités"
+        subtitle="Découvrez nos dernières analyses, tendances et conseils d'experts pour transformer votre entreprise et accélérer votre croissance."
+        breadcrumbs={[{ label: 'Blog' }]}
+        image="/nova/blog-page-title-bg.jpg"
+      />
 
-      {/* Search and Filter */}
-      <section className="py-12 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Recherche et filtres */}
+      <section className="py-10 bg-white border-b border-gray-200">
+        <div className="container-responsive">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-3 text-gray-400" size={20} />
+            <div className="relative flex-1 max-w-md w-full">
+              <Search className="absolute left-3 top-3.5 text-gray-400" size={20} />
               <input
                 type="text"
                 placeholder="Rechercher un article..."
@@ -271,11 +263,10 @@ const BlogPage = ({ currentArticle, setCurrentArticle }: BlogPageProps) => {
                   setSearchTerm(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b00000] focus:border-transparent outline-none transition-all duration-200"
+                className="nova-field pl-10"
               />
             </div>
 
-            {/* Category Filter */}
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
@@ -284,11 +275,16 @@ const BlogPage = ({ currentArticle, setCurrentArticle }: BlogPageProps) => {
                     setSelectedCategory(category);
                     setCurrentPage(1);
                   }}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 text-sm ${
+                  className={`px-5 py-2 rounded-full font-medium transition-all duration-300 text-sm ${
                     selectedCategory === category
-                      ? 'bg-[#b00000] text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'text-white shadow-md'
+                      : 'bg-white border border-gray-300 hover:border-[color:var(--nova-accent)]'
                   }`}
+                  style={
+                    selectedCategory === category
+                      ? { backgroundColor: 'var(--nova-accent)' }
+                      : { color: 'var(--nova-default)' }
+                  }
                 >
                   {category}
                 </button>
@@ -296,62 +292,71 @@ const BlogPage = ({ currentArticle, setCurrentArticle }: BlogPageProps) => {
             </div>
           </div>
 
-          {/* Results count */}
-          <div className="mt-6 text-gray-600">
+          <div className="mt-6" style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}>
             <span className="font-medium">{filteredArticles.length}</span> article(s) trouvé(s)
           </div>
         </div>
       </section>
 
-      {/* Articles Grid */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {currentArticles.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">Aucun article trouvé pour votre recherche.</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {currentArticles.map((article) => (
-                <article 
-                  key={article.id}
+      {/* Grille d'articles */}
+      <Section light>
+        {currentArticles.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-lg" style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 40%)' }}>
+              Aucun article trouvé pour votre recherche.
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {currentArticles.map((article, index) => (
+              <Reveal key={article.id} delay={100 * (index % 3 + 1)} className="h-full">
+                <article
                   onClick={() => setCurrentArticle(article.id)}
-                  className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden"
+                  className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group overflow-hidden h-full flex flex-col"
                 >
-                  {/* Image */}
                   <div className="aspect-video overflow-hidden">
-                    <img 
-                      src={article.image} 
+                    <img
+                      src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    {/* Category & Date */}
+                  <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="bg-[#b00000] text-white px-3 py-1 rounded-full text-xs font-medium">
+                      <span
+                        className="text-white px-3 py-1 rounded-full text-xs font-medium"
+                        style={{ backgroundColor: 'var(--nova-accent)' }}
+                      >
                         {article.category}
                       </span>
-                      <div className="flex items-center text-gray-500 text-sm">
+                      <div
+                        className="flex items-center text-sm"
+                        style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 40%)' }}
+                      >
                         <Clock size={14} className="mr-1" />
                         {article.readTime}
                       </div>
                     </div>
 
-                    {/* Title */}
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#b00000] transition-colors duration-300 line-clamp-2">
+                    <h2
+                      className="text-xl font-bold mb-3 transition-colors duration-300 group-hover:text-[color:var(--nova-accent)] line-clamp-2"
+                      style={{ color: 'var(--nova-heading)' }}
+                    >
                       {article.title}
                     </h2>
 
-                    {/* Excerpt */}
-                    <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                    <p
+                      className="mb-4 leading-relaxed line-clamp-3 text-[15px]"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}
+                    >
                       {article.excerpt}
                     </p>
 
-                    {/* Meta */}
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                    <div
+                      className="flex items-center justify-between text-sm mb-4"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 40%)' }}
+                    >
                       <div className="flex items-center">
                         <User size={14} className="mr-1" />
                         {article.author}
@@ -362,92 +367,90 @@ const BlogPage = ({ currentArticle, setCurrentArticle }: BlogPageProps) => {
                       </div>
                     </div>
 
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {article.tags.slice(0, 2).map((tag, index) => (
-                        <span key={index} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                      {article.tags.slice(0, 2).map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-2 py-1 rounded text-xs"
+                          style={{ backgroundColor: 'var(--nova-light-bg)', color: 'var(--nova-default)' }}
+                        >
                           {tag}
                         </span>
                       ))}
                       {article.tags.length > 2 && (
-                        <span className="text-xs text-[#b00000] font-medium">
+                        <span className="text-xs font-medium" style={{ color: 'var(--nova-accent)' }}>
                           +{article.tags.length - 2}
                         </span>
                       )}
                     </div>
 
-                    {/* Read More */}
-                    <div className="flex items-center text-[#b00000] font-medium group-hover:text-red-700 transition-colors duration-300">
+                    <div
+                      className="flex items-center font-bold text-sm mt-auto transition-colors duration-300 group-hover:text-[color:var(--nova-accent)]"
+                      style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 50%)' }}
+                    >
                       <span>Lire la suite</span>
                       <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
                 </article>
-              ))}
-            </div>
-          )}
+              </Reveal>
+            ))}
+          </div>
+        )}
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center mt-12 space-x-2">
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center mt-12 gap-2 flex-wrap">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="flex items-center px-5 py-2 border border-gray-300 rounded-full bg-white hover:border-[color:var(--nova-accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
+            >
+              <ArrowLeft size={16} className="mr-2" />
+              Précédent
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`px-5 py-2 rounded-full font-medium transition-colors duration-300 ${
+                  currentPage === page ? 'text-white' : 'border border-gray-300 bg-white hover:border-[color:var(--nova-accent)]'
+                }`}
+                style={currentPage === page ? { backgroundColor: 'var(--nova-accent)' } : undefined}
               >
-                <ArrowLeft size={16} className="mr-2" />
-                Précédent
+                {page}
               </button>
+            ))}
 
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => setCurrentPage(page)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-                    currentPage === page
-                      ? 'bg-[#b00000] text-white'
-                      : 'border border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  {page}
-                </button>
-              ))}
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className="flex items-center px-5 py-2 border border-gray-300 rounded-full bg-white hover:border-[color:var(--nova-accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
+            >
+              Suivant
+              <ArrowRight size={16} className="ml-2" />
+            </button>
+          </div>
+        )}
+      </Section>
 
-              <button
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-              >
-                Suivant
-                <ArrowRight size={16} className="ml-2" />
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Newsletter CTA */}
-      <section className="py-20 bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+      {/* Newsletter */}
+      <Section dark>
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-[32px] font-bold text-white mb-4">
             Restez Informé de nos Dernières Actualités
           </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Abonnez-vous à notre newsletter pour recevoir nos analyses exclusives 
+          <p className="text-white/80 mb-8">
+            Abonnez-vous à notre newsletter pour recevoir nos analyses exclusives
             et conseils d'experts directement dans votre boîte mail.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Votre adresse email"
-              className="flex-1 px-4 py-3 rounded-lg text-black focus:ring-2 focus:ring-[#b00000] outline-none"
-            />
-            <button className="bg-[#b00000] text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium">
-              S'abonner
-            </button>
+            <input type="email" placeholder="Votre adresse email" className="nova-field flex-1" />
+            <NovaButton variant="light">S'abonner</NovaButton>
           </div>
         </div>
-      </section>
+      </Section>
     </div>
   );
 };
@@ -455,109 +458,78 @@ const BlogPage = ({ currentArticle, setCurrentArticle }: BlogPageProps) => {
 const ArticleDetailPage = ({ article, setCurrentArticle }: { article: Article; setCurrentArticle: (article: string | null) => void }) => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-2 text-sm">
-            <button 
-              onClick={() => setCurrentArticle(null)}
-              className="text-[#b00000] hover:text-red-700 transition-colors duration-200 flex items-center"
-            >
-              <ArrowLeft size={16} className="mr-1" />
-              Retour au blog
-            </button>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-600">{article.title}</span>
-          </div>
-        </div>
-      </div>
+      <PageTitle
+        title={article.title}
+        breadcrumbs={[
+          { label: 'Blog', onClick: () => setCurrentArticle(null) },
+          { label: article.category }
+        ]}
+        image="/nova/blog-page-title-bg.jpg"
+      />
 
-      {/* Article Header */}
-      <section className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <span className="bg-[#b00000] text-white px-4 py-2 rounded-full text-sm font-medium">
-              {article.category}
-            </span>
-          </div>
-          
-          <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            {article.title}
-          </h1>
-          
-          <div className="flex items-center space-x-6 text-gray-600 mb-8">
+      <Section>
+        <div className="max-w-4xl mx-auto">
+          <button
+            onClick={() => setCurrentArticle(null)}
+            className="flex items-center font-semibold mb-8 transition-colors duration-300 hover:opacity-75"
+            style={{ color: 'var(--nova-accent)' }}
+          >
+            <ArrowLeft size={18} className="mr-2" />
+            Retour au blog
+          </button>
+
+          <div
+            className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-8"
+            style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 35%)' }}
+          >
             <div className="flex items-center">
-              <User size={18} className="mr-2" />
+              <User size={18} className="mr-2" style={{ color: 'var(--nova-accent)' }} />
               <span className="font-medium">{article.author}</span>
             </div>
             <div className="flex items-center">
-              <Calendar size={18} className="mr-2" />
+              <Calendar size={18} className="mr-2" style={{ color: 'var(--nova-accent)' }} />
               <span>{article.date}</span>
             </div>
             <div className="flex items-center">
-              <Clock size={18} className="mr-2" />
+              <Clock size={18} className="mr-2" style={{ color: 'var(--nova-accent)' }} />
               <span>{article.readTime} de lecture</span>
             </div>
           </div>
 
-          {/* Featured Image */}
           <div className="aspect-video rounded-xl overflow-hidden mb-8">
-            <img 
-              src={article.image} 
-              alt={article.title}
-              className="w-full h-full object-cover"
-            />
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
           </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-10">
             {article.tags.map((tag, index) => (
-              <span key={index} className="flex items-center bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                <Tag size={14} className="mr-1" />
+              <span
+                key={index}
+                className="flex items-center px-3 py-1 rounded-full text-sm"
+                style={{ backgroundColor: 'var(--nova-light-bg)', color: 'var(--nova-default)' }}
+              >
+                <Tag size={14} className="mr-1" style={{ color: 'var(--nova-accent)' }} />
                 {tag}
               </span>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Article Content */}
-      <section className="pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-              {article.content}
-            </div>
-          </div>
-
-          {/* Share & CTA */}
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Besoin d'accompagnement ?
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Nos experts sont à votre disposition pour vous accompagner 
-                dans la mise en œuvre de ces stratégies.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="#contact"
-                  className="bg-[#b00000] text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium"
-                >
-                  Nous Contacter
-                </a>
-                <a 
-                  href="#formations"
-                  className="border-2 border-[#b00000] text-[#b00000] px-8 py-3 rounded-lg hover:bg-[#b00000] hover:text-white transition-all duration-200 font-medium"
-                >
-                  Découvrir nos Formations
-                </a>
-              </div>
-            </div>
+          <div
+            className="leading-relaxed whitespace-pre-line text-lg"
+            style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 20%)' }}
+          >
+            {article.content}
           </div>
         </div>
-      </section>
+      </Section>
+
+      <CallToAction
+        title="Besoin d'accompagnement ?"
+        description="Nos experts sont à votre disposition pour vous accompagner dans la mise en œuvre de ces stratégies."
+        actions={[
+          { label: 'Nous Contacter', href: '#contact' },
+          { label: 'Découvrir nos Formations', href: '#formations', outline: true }
+        ]}
+      />
     </div>
   );
 };

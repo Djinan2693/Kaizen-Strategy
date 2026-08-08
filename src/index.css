@@ -9,6 +9,71 @@
   --primary-red-light: #d33333;
 }
 
+/* --------------------------------------------------------------
+ * Design tokens du template Nova, adaptés aux couleurs Kaizen.
+ * Utilisés par les composants de src/components/nova.
+ * -------------------------------------------------------------- */
+:root {
+  --nova-accent: #b00000;        /* accent de marque (remplace le cyan Nova) */
+  --nova-accent-dark: #900000;   /* survol des boutons accent */
+  --nova-heading: #1b1b1b;       /* titres */
+  --nova-default: #2b180d;       /* texte courant */
+  --nova-surface: #ffffff;       /* fond des cartes */
+  --nova-light-bg: #fdf5f5;      /* sections alternées (teinte de l'accent) */
+  --nova-dark-bg: #5a0000;       /* bannières et sections sombres */
+  --nova-dark-surface: #7a1414;  /* cartes sur fond sombre */
+}
+
+/* Champs de formulaire du template Nova */
+.nova-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.5rem;
+  color: var(--nova-default);
+  background-color: var(--nova-surface);
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+.nova-field::placeholder {
+  color: color-mix(in srgb, var(--nova-default), transparent 60%);
+}
+
+.nova-field:focus {
+  outline: none;
+  border-color: var(--nova-accent);
+  box-shadow: none;
+}
+
+.nova-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--nova-heading);
+}
+
+/* Révélation au scroll (équivalent AOS fade-up du template) */
+.nova-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.nova-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nova-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* PWA Styles */
 @media (display-mode: standalone) {
   body {

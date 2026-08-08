@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator, FileText, Users, Clock, CheckCircle, Send } from 'lucide-react';
+import { PageTitle, Section, SectionTitle, NovaButton, Reveal } from './nova';
 
 const DevisPage = () => {
   const [formData, setFormData] = useState({
@@ -63,6 +64,12 @@ const DevisPage = () => {
     'Sur mesure'
   ];
 
+  const avantages = [
+    { icon: Clock, title: 'Réponse Rapide', text: 'Devis personnalisé sous 24h' },
+    { icon: Users, title: 'Expertise Reconnue', text: 'Formateurs certifiés et expérimentés' },
+    { icon: CheckCircle, title: 'Sur Mesure', text: 'Formations adaptées à vos besoins' }
+  ];
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -80,365 +87,339 @@ const DevisPage = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-100 pt-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+      <div className="min-h-screen bg-white">
+        <PageTitle
+          title="Demande de devis envoyée !"
+          breadcrumbs={[{ label: 'Devis' }]}
+          image="/nova/contact-page-title-bg.jpg"
+        />
+
+        <Section>
+          <Reveal className="max-w-2xl mx-auto text-center">
+            <div
+              className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+              style={{ backgroundColor: 'var(--nova-accent)' }}
+            >
               <CheckCircle size={40} className="text-white" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-6">
-              Demande de devis envoyée !
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Merci pour votre demande. Notre équipe vous contactera dans les 24h pour établir votre devis personnalisé.
-            </p>
-            <button 
-              onClick={() => setIsSubmitted(false)}
-              className="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition-colors duration-200"
+            <h2 className="text-2xl md:text-[32px] font-bold mb-4" style={{ color: 'var(--nova-heading)' }}>
+              Merci pour votre demande
+            </h2>
+            <p
+              className="text-lg mb-8"
+              style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 25%)' }}
             >
-              Faire une nouvelle demande
-            </button>
-          </div>
-        </div>
+              Notre équipe vous contactera dans les 24h pour établir votre devis personnalisé.
+            </p>
+            <NovaButton onClick={() => setIsSubmitted(false)}>Faire une nouvelle demande</NovaButton>
+          </Reveal>
+        </Section>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-100 pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-red-900/80 via-red-800/60 to-transparent z-10"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Devis formation professionnelle"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Devis <span className="text-red-300">Gratuit</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-red-100 max-w-4xl mx-auto">
-              Obtenez un devis personnalisé pour vos formations professionnelles
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-white">
+      <PageTitle
+        title="Devis Gratuit"
+        subtitle="Obtenez un devis personnalisé pour vos formations professionnelles."
+        breadcrumbs={[{ label: 'Devis' }]}
+        image="/nova/contact-page-title-bg.jpg"
+      />
 
-      {/* Formulaire de devis */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <div className="bg-gradient-to-r from-red-600 to-red-700 px-8 py-6">
-              <h2 className="text-2xl font-bold text-white flex items-center">
-                <Calculator size={28} className="mr-3" />
-                Demande de Devis Personnalisé
-              </h2>
-              <p className="text-red-100 mt-2">
-                Remplissez ce formulaire pour recevoir votre devis sous 24h
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="p-8 space-y-6">
-              {/* Informations personnelles */}
-              <div className="border-b border-gray-200 pb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Users size={20} className="mr-2 text-red-600" />
-                  Informations personnelles
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Nom *
-                    </label>
-                    <input
-                      type="text"
-                      name="nom"
-                      value={formData.nom}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="Votre nom"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Prénom *
-                    </label>
-                    <input
-                      type="text"
-                      name="prenom"
-                      value={formData.prenom}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="Votre prénom"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="votre.email@exemple.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Téléphone *
-                    </label>
-                    <input
-                      type="tel"
-                      name="telephone"
-                      value={formData.telephone}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="+225 XX XX XX XX"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Entreprise *
-                    </label>
-                    <input
-                      type="text"
-                      name="entreprise"
-                      value={formData.entreprise}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="Nom de votre entreprise"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Poste
-                    </label>
-                    <input
-                      type="text"
-                      name="poste"
-                      value={formData.poste}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="Votre fonction"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Informations formation */}
-              <div className="border-b border-gray-200 pb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <FileText size={20} className="mr-2 text-red-600" />
-                  Détails de la formation
-                </h3>
-                
-                {/* Information sur nos pôles d'expertise */}
-                <div className="mb-6 p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                  <h4 className="font-semibold text-red-900 mb-2">Nos 4 Pôles d'Expertise</h4>
-                  <div className="grid md:grid-cols-2 gap-3 text-sm text-red-800">
-                    <div>• <strong>Études & Recherches</strong> : Analyses stratégiques et veille concurrentielle</div>
-                    <div>• <strong>Risk Management</strong> : Solution "Le Bouclier" et gestion des risques</div>
-                    <div>• <strong>Intelligence Artificielle</strong> : IA appliquée à l'entreprise</div>
-                    <div>• <strong>Corporate Finance</strong> : Optimisation financière et croissance</div>
-                  </div>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Domaine de formation *
-                    </label>
-                    <select
-                      name="domaine"
-                      value={formData.domaine}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                    >
-                      <option value="">Sélectionnez un domaine</option>
-                      {domaines.map(domaine => (
-                        <option key={domaine.id} value={domaine.id}>
-                          {domaine.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Formation spécifique
-                    </label>
-                    <select
-                      name="formation"
-                      value={formData.formation}
-                      onChange={handleInputChange}
-                      disabled={!formData.domaine}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100"
-                    >
-                      <option value="">Sélectionnez une formation</option>
-                      {formData.domaine && domaines.find(d => d.id === formData.domaine)?.formations.map(formation => (
-                        <option key={formation} value={formation}>
-                          {formation}
-                        </option>
-                      ))}
-                      <option value="catalogue-formation">Formation du catalogue Kaizen Strategy</option>
-                    </select>
-                  </div>
-                  {formData.formation === 'catalogue-formation' && (
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Précisez la formation du catalogue souhaitée
-                      </label>
-                      <input
-                        type="text"
-                        name="formationCatalogue"
-                        value={formData.formationCatalogue || ''}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                        placeholder="Ex: Leadership Stratégique, Management d'équipe, Gestion RH, Comptabilité, etc."
-                      />
-                      <p className="text-sm text-gray-500 mt-1">
-                        Consultez notre catalogue complet de formations sur notre site
-                      </p>
-                    </div>
-                  )}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Durée souhaitée *
-                    </label>
-                    <select
-                      name="duree"
-                      value={formData.duree}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                    >
-                      <option value="">Sélectionnez la durée</option>
-                      {durees.map(duree => (
-                        <option key={duree} value={duree}>
-                          {duree}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Nombre de participants *
-                    </label>
-                    <input
-                      type="number"
-                      name="participants"
-                      value={formData.participants}
-                      onChange={handleInputChange}
-                      required
-                      min="1"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="Nombre de participants"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Date souhaitée
-                    </label>
-                    <input
-                      type="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Budget approximatif (FCFA)
-                    </label>
-                    <input
-                      type="text"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="Ex: 500,000 - 1,000,000"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Message complémentaire
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                  placeholder="Décrivez vos besoins spécifiques, objectifs, ou toute information utile..."
-                ></textarea>
-              </div>
-
-              {/* Bouton de soumission */}
-              <div className="pt-6">
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 px-8 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 font-semibold text-lg flex items-center justify-center"
-                >
-                  <Send size={20} className="mr-2" />
-                  Envoyer ma demande de devis
-                </button>
-                <p className="text-sm text-gray-500 text-center mt-3">
-                  Vous recevrez votre devis personnalisé sous 24h ouvrées
+      {/* Formulaire */}
+      <Section light>
+        <div className="max-w-4xl mx-auto">
+          <Reveal delay={100}>
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="px-8 py-6" style={{ backgroundColor: 'var(--nova-dark-bg)' }}>
+                <h2 className="text-2xl font-bold text-white flex items-center">
+                  <Calculator size={28} className="mr-3" />
+                  Demande de Devis Personnalisé
+                </h2>
+                <p className="text-white/80 mt-2">
+                  Remplissez ce formulaire pour recevoir votre devis sous 24h
                 </p>
               </div>
-            </form>
-          </div>
+
+              <form onSubmit={handleSubmit} className="p-8 space-y-8">
+                {/* Informations personnelles */}
+                <div className="border-b border-gray-200 pb-8">
+                  <h3
+                    className="text-lg font-bold mb-5 flex items-center"
+                    style={{ color: 'var(--nova-heading)' }}
+                  >
+                    <Users size={20} className="mr-2" style={{ color: 'var(--nova-accent)' }} />
+                    Informations personnelles
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label className="nova-label">Nom *</label>
+                      <input
+                        type="text"
+                        name="nom"
+                        value={formData.nom}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                        placeholder="Votre nom"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Prénom *</label>
+                      <input
+                        type="text"
+                        name="prenom"
+                        value={formData.prenom}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                        placeholder="Votre prénom"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Email *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                        placeholder="votre.email@exemple.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Téléphone *</label>
+                      <input
+                        type="tel"
+                        name="telephone"
+                        value={formData.telephone}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                        placeholder="+225 XX XX XX XX"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Entreprise *</label>
+                      <input
+                        type="text"
+                        name="entreprise"
+                        value={formData.entreprise}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                        placeholder="Nom de votre entreprise"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Poste</label>
+                      <input
+                        type="text"
+                        name="poste"
+                        value={formData.poste}
+                        onChange={handleInputChange}
+                        className="nova-field"
+                        placeholder="Votre fonction"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Détails de la formation */}
+                <div className="border-b border-gray-200 pb-8">
+                  <h3
+                    className="text-lg font-bold mb-5 flex items-center"
+                    style={{ color: 'var(--nova-heading)' }}
+                  >
+                    <FileText size={20} className="mr-2" style={{ color: 'var(--nova-accent)' }} />
+                    Détails de la formation
+                  </h3>
+
+                  <div
+                    className="mb-6 p-5 rounded-lg border-l-4"
+                    style={{ backgroundColor: 'var(--nova-light-bg)', borderColor: 'var(--nova-accent)' }}
+                  >
+                    <h4 className="font-bold mb-3" style={{ color: 'var(--nova-heading)' }}>
+                      Nos 4 Pôles d'Expertise
+                    </h4>
+                    <div className="grid md:grid-cols-2 gap-3 text-sm" style={{ color: 'var(--nova-default)' }}>
+                      <div>• <strong>Études &amp; Recherches</strong> : Analyses stratégiques et veille concurrentielle</div>
+                      <div>• <strong>Risk Management</strong> : Solution "Le Bouclier" et gestion des risques</div>
+                      <div>• <strong>Intelligence Artificielle</strong> : IA appliquée à l'entreprise</div>
+                      <div>• <strong>Corporate Finance</strong> : Optimisation financière et croissance</div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label className="nova-label">Domaine de formation *</label>
+                      <select
+                        name="domaine"
+                        value={formData.domaine}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                      >
+                        <option value="">Sélectionnez un domaine</option>
+                        {domaines.map(domaine => (
+                          <option key={domaine.id} value={domaine.id}>
+                            {domaine.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="nova-label">Formation spécifique</label>
+                      <select
+                        name="formation"
+                        value={formData.formation}
+                        onChange={handleInputChange}
+                        disabled={!formData.domaine}
+                        className="nova-field disabled:bg-gray-100"
+                      >
+                        <option value="">Sélectionnez une formation</option>
+                        {formData.domaine && domaines.find(d => d.id === formData.domaine)?.formations.map(formation => (
+                          <option key={formation} value={formation}>
+                            {formation}
+                          </option>
+                        ))}
+                        <option value="catalogue-formation">Formation du catalogue Kaizen Strategy</option>
+                      </select>
+                    </div>
+                    {formData.formation === 'catalogue-formation' && (
+                      <div className="md:col-span-2">
+                        <label className="nova-label">Précisez la formation du catalogue souhaitée</label>
+                        <input
+                          type="text"
+                          name="formationCatalogue"
+                          value={formData.formationCatalogue || ''}
+                          onChange={handleInputChange}
+                          className="nova-field"
+                          placeholder="Ex: Leadership Stratégique, Management d'équipe, Gestion RH, Comptabilité, etc."
+                        />
+                        <p
+                          className="text-sm mt-1"
+                          style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 45%)' }}
+                        >
+                          Consultez notre catalogue complet de formations sur notre site
+                        </p>
+                      </div>
+                    )}
+                    <div>
+                      <label className="nova-label">Durée souhaitée *</label>
+                      <select
+                        name="duree"
+                        value={formData.duree}
+                        onChange={handleInputChange}
+                        required
+                        className="nova-field"
+                      >
+                        <option value="">Sélectionnez la durée</option>
+                        {durees.map(duree => (
+                          <option key={duree} value={duree}>
+                            {duree}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="nova-label">Nombre de participants *</label>
+                      <input
+                        type="number"
+                        name="participants"
+                        value={formData.participants}
+                        onChange={handleInputChange}
+                        required
+                        min="1"
+                        className="nova-field"
+                        placeholder="Nombre de participants"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Date souhaitée</label>
+                      <input
+                        type="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleInputChange}
+                        className="nova-field"
+                      />
+                    </div>
+                    <div>
+                      <label className="nova-label">Budget approximatif (FCFA)</label>
+                      <input
+                        type="text"
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleInputChange}
+                        className="nova-field"
+                        placeholder="Ex: 500,000 - 1,000,000"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="nova-label">Message complémentaire</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="nova-field resize-y"
+                    placeholder="Décrivez vos besoins spécifiques, objectifs, ou toute information utile..."
+                  ></textarea>
+                </div>
+
+                <div className="text-center pt-2">
+                  <NovaButton type="submit">
+                    <Send size={20} />
+                    Envoyer ma demande de devis
+                  </NovaButton>
+                  <p
+                    className="text-sm mt-3"
+                    style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 45%)' }}
+                  >
+                    Vous recevrez votre devis personnalisé sous 24h ouvrées
+                  </p>
+                </div>
+              </form>
+            </div>
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
       {/* Avantages */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Pourquoi choisir Kaizen Strategy ?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock size={32} className="text-red-600" />
+      <Section>
+        <SectionTitle
+          title="Pourquoi choisir Kaizen Strategy ?"
+          description="Un accompagnement réactif, expert et taillé pour votre organisation."
+        />
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {avantages.map((avantage, index) => (
+            <Reveal key={avantage.title} delay={100 * (index + 1)}>
+              <div className="text-center">
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: 'var(--nova-light-bg)' }}
+                >
+                  <avantage.icon size={30} strokeWidth={1.5} style={{ color: 'var(--nova-accent)' }} />
+                </div>
+                <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--nova-heading)' }}>
+                  {avantage.title}
+                </h3>
+                <p style={{ color: 'color-mix(in srgb, var(--nova-default), transparent 30%)' }}>
+                  {avantage.text}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Réponse Rapide</h3>
-              <p className="text-gray-600">Devis personnalisé sous 24h</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users size={32} className="text-red-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Expertise Reconnue</h3>
-              <p className="text-gray-600">Formateurs certifiés et expérimentés</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle size={32} className="text-red-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Sur Mesure</h3>
-              <p className="text-gray-600">Formations adaptées à vos besoins</p>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
     </div>
   );
 };
