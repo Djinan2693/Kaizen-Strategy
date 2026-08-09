@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kaizen-strategy-v4';
+const CACHE_NAME = 'kaizen-strategy-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -6,6 +6,7 @@ const urlsToCache = [
   '/logo-header.png',
   '/photo-fondateur.png',
   '/icon-192.png',
+  '/favicon-32.png',
   '/icon-512.png',
   // Les assets seront mis en cache dynamiquement
 ];
