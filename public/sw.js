@@ -1,9 +1,9 @@
-const CACHE_NAME = 'kaizen-strategy-v3';
+const CACHE_NAME = 'kaizen-strategy-v4';
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/logo.jpg',
+  '/logo-header.png',
   '/photo-fondateur.png',
   '/icon-192.png',
   '/icon-512.png',

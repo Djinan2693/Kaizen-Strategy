@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
   currentPage: string;
@@ -38,23 +38,11 @@ const Header = ({ currentPage, setCurrentPage, setCurrentExpertise, setCurrentFo
               onClick={() => handleNavClick('home')}
               className="flex items-center group touch-target"
             >
-              <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden mr-2 sm:mr-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-red-500/25">
-                <img 
-                  src="/logo.jpg" 
-                  alt="Kaizen Strategy Logo" 
-                  className="w-full h-full object-cover rounded-xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-[#b00000]/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Sparkles className="absolute top-0.5 right-0.5 text-yellow-400 w-2 h-2 sm:w-2.5 sm:h-2.5 animate-pulse" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-lg font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent group-hover:from-[#b00000] group-hover:to-red-500 transition-all duration-300">
-                  Kaizen Strategy
-                </div>
-                <div className="text-xs text-gray-400 uppercase tracking-wide font-medium">
-                  Excellence & Innovation
-                </div>
-              </div>
+              <img
+                src="/logo-header.png"
+                alt="Kaizen Strategy"
+                className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
             </button>
           </div>
 
